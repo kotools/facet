@@ -12,8 +12,6 @@ Kotools Facet is a Kotlin SDK that lets you define your domain model once and
 project it across every layer of your application — HTTP, persistence, and
 beyond — without writing a single mapper.
 
----
-
 ## 😩 The Problem
 
 In a typical Kotlin backend, a single concept like `User` explodes into several
@@ -50,8 +48,6 @@ This pattern leads to:
 - **Scattered logic** — business rules spread across layers instead of living on
   the domain
 - **Maintenance burden** — a single field change ripples through every layer
-
----
 
 ## ✨ The Solution
 
@@ -96,8 +92,6 @@ This solution provides several benefits:
 - **Less boilerplate** — no `UserEntity`, `UserHttpRequest`, or
   `UserHttpResponse` classes; no mapper functions to maintain.
 
----
-
 ## 📦 Modules
 
 Facet is modular. Add only what your stack needs.
@@ -110,8 +104,6 @@ Facet is modular. Add only what your stack needs.
 
 > All modules require `facet-core`. Integration modules (`facet-ktor`,
 > `facet-exposed`) are optional and independent of each other.
-
----
 
 ## 🚀 Getting Started
 
@@ -137,8 +129,6 @@ dependencies {
 ```
 
 Star and watch this repository to be notified when Kotools Facet is available.
-
----
 
 ## 📄 License
 
