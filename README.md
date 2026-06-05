@@ -55,17 +55,21 @@ With Kotools Facet, your domain model is the only model. Declare how each layer
 should see it, and Kotools Facet takes care of the rest at compile time.
 
 ```kotlin
-@Faceted
+@Facet
 data class User(val id: UUID, val email: String) {
-    companion object : FacetScope<User> {
-        val http = ktorFacet {
-            request { User::id.hide(seed = UUID::randomUUID) }
-            response { User::id.map(UUID::toString) }
+    companion object : FacetHost<User> {
+        val http = KtorFacet {
+            request {
+                hide(User::id) { UUID.randomUUID() }
+            }
+            response {
+                map(User::id) { it.toString() }
+            }
         }
 
-        val database = exposedFacet {
-            User::id.map(name = "user_id", transform = UUID::toString)
-            User::email.map(name = "user_email")
+        val database = ExposedFacet {
+            map(User::id, name = "user_id") { it.toString() }
+            rename(User::id, name = "user_email")
         }
     }
 }
@@ -74,11 +78,11 @@ data class User(val id: UUID, val email: String) {
 The `companion object` is the projection registry for `User` — no separate
 class or configuration file required.
 
-- `@Faceted` marks the class for compile-time projection processing.
-- `FacetScope<T>` is implemented by the companion object to expose projection
+- `@Facet` marks the class for compile-time projection processing.
+- `FacetHost<T>` is implemented by the companion object to expose projection
   builders for each layer.
-- `ktorFacet {}` / `exposedFacet {}` declare layer-specific projections using
-  a type-safe DSL.
+- `KtorFacet {}` / `ExposedFacet {}` declare layer-specific projections using a
+  type-safe DSL.
 - `hide()` removes a field from a projection; `map()` renames or transforms it.
 
 This solution provides several benefits:
