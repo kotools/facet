@@ -5,33 +5,7 @@ code in this repository.
 
 ## Project Overview
 
-Kotools Facet is a Kotlin SDK that lets you define your domain model once and
-project it across every layer of your application (HTTP, persistence, and
-beyond) without writing mappers. It uses compile-time annotation processing and
-a declarative DSL.
-
-The core API looks like this:
-
-```kotlin
-@Faceted
-data class User(val id: UUID, val email: String) {
-    companion object : FacetScope<User> {
-        val http = ktorFacet {
-            request { User::id.hide(seed = UUID::randomUUID) }
-            response { User::id.map(UUID::toString) }
-        }
-        val database = exposedFacet {
-            User::id.map(name = "user_id", transform = UUID::toString)
-            User::email.map(name = "user_email")
-        }
-    }
-}
-```
-
-## Licensing
-
-The repository itself is MIT-licensed. The SDK modules are distributed under a
-commercial license.
+See @README.md file for an overview of this project.
 
 ## Git
 
