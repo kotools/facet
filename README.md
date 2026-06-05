@@ -67,10 +67,7 @@ data class User(val id: UUID, val email: String) {
             }
         }
 
-        val database = ExposedFacet {
-            map(User::id, name = "user_id") { it.toString() }
-            rename(User::email, name = "user_email")
-        }
+        // More integrations coming soon...
     }
 }
 ```
@@ -81,8 +78,7 @@ class or configuration file required.
 - `@Facet` marks the class for compile-time projection processing.
 - `FacetHost<T>` is implemented by the companion object to expose projection
   builders for each layer.
-- `KtorFacet {}` / `ExposedFacet {}` declare layer-specific projections using a
-  type-safe DSL.
+- `KtorFacet {}` declares layer-specific projections using a type-safe DSL.
 - `hide()` removes a field from a projection; `map()` transforms it; `rename()`
   gives it a different name in the projection.
 
@@ -92,25 +88,25 @@ This solution provides several benefits:
   it. No parallel `UserEntity` or `UserHttpResponse` classes.
 - **Domain-first** — `hide()` and `map()` live on `User` itself, not in a
   service or mapper. Business rules stay with the model.
-- **No mappers** — `KtorFacet {}` and `ExposedFacet {}` declare projections;
-  the SDK generates the glue at compile time.
-- **Less boilerplate** — no `UserEntity`, `UserHttpRequest`, or
-  `UserHttpResponse` classes; no mapper functions to maintain.
+- **No mappers** — `KtorFacet {}` declares projections; the SDK generates the
+  glue at compile time.
+- **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes;
+  no mapper functions to maintain.
 
 ## 📦 Modules
 
 Facet is modular. Add only what your stack needs.
 
-| Module          | What it does                                                                                       |
-|-----------------|----------------------------------------------------------------------------------------------------|
-| `facet-core`    | DSL and `@Facet` annotation — required by all other modules                                        |
-| `facet-ksp`     | KSP annotation processor — generates projection code at compile time                               |
-| `facet-ktor`    | Ktor integration: shape HTTP requests and responses directly from your domain model                |
-| `facet-exposed` | Exposed integration: map fields to table columns without an entity class                           |
+| Module       | What it does                                                |
+|--------------|-------------------------------------------------------------|
+| `facet-core` | DSL and `@Facet` annotation — required by all other modules |
+| `facet-ksp`  | KSP processor — generates projection code at compile time   |
+| `facet-ktor` | Ktor integration: shape HTTP requests and responses         |
 
 > All modules require `facet-core`. `facet-ksp` is a build-time KSP processor
-> required for compile-time code generation. Integration modules (`facet-ktor`,
-> `facet-exposed`) are optional and independent of each other.
+> required for compile-time code generation.
+
+More integrations are on the way — stay tuned.
 
 ## 🚀 Getting Started
 
@@ -129,13 +125,9 @@ plugins {
 dependencies {
     ksp("org.kotools:facet-ksp:<version>")
     implementation("org.kotools:facet-core:<version>")
-    // Add only what your stack needs:
     implementation("org.kotools:facet-ktor:<version>")
-    implementation("org.kotools:facet-exposed:<version>")
 }
 ```
-
-Star and watch this repository to be notified when Kotools Facet is available.
 
 ## 📝 Documentation
 
@@ -143,9 +135,17 @@ Here's additional documentation for learning more about this project:
 
 - [Core API](documentation/core-api.md)
 
+## 📬 Get Early Access
+
+Kotools Facet is commercial software. To get notified when it ships and to
+discuss licensing, **join the waiting list** by sending an email to
+[contact@kotools.org](mailto:contact@kotools.org) with the subject
+**"Kotools Facet – Waiting List"**.
+
 ## 📄 License
 
 `facet` (this repository) is open source and published under the
 [MIT License](LICENSE.txt).
 
-The SDK modules are distributed under a commercial license.
+The SDK modules are distributed under a commercial license. To enquire about
+licensing, contact us at [contact@kotools.org](mailto:contact@kotools.org).
