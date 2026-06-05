@@ -134,6 +134,12 @@ dependencies {
 
 Star and watch this repository to be notified when Kotools Facet is available.
 
+## 📝 Documentation
+
+Here's additional documentation for learning more about this project:
+
+- [Core API](documentation/core-api.md)
+
 ## 📄 License
 
 `facet` (this repository) is open source and published under the
