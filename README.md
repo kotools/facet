@@ -100,11 +100,11 @@ This solution provides several benefits:
 
 Facet is modular. Add only what your stack needs.
 
-| Module          | What it does                                                                                         |
-|-----------------|------------------------------------------------------------------------------------------------------|
-| `facet-core`    | DSL and `@Faceted` annotation — required by all other modules                                        |
-| `facet-ktor`    | Ktor integration: shape HTTP requests and responses directly from your domain model                  |
-| `facet-exposed` | Exposed integration: map fields to table columns without an entity class                             |
+| Module          | What it does                                                                                       |
+|-----------------|----------------------------------------------------------------------------------------------------|
+| `facet-core`    | DSL and `@Facet` annotation — required by all other modules                                        |
+| `facet-ktor`    | Ktor integration: shape HTTP requests and responses directly from your domain model                |
+| `facet-exposed` | Exposed integration: map fields to table columns without an entity class                           |
 
 > All modules require `facet-core`. Integration modules (`facet-ktor`,
 > `facet-exposed`) are optional and independent of each other.
