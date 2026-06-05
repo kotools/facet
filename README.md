@@ -1,9 +1,7 @@
 # 💎 Kotools Facet
 
-[![License: MIT][badge-license]](LICENSE.txt)
 ![Status: Early Development][badge-status]
 
-[badge-license]: https://img.shields.io/badge/License-MIT-blue.svg
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
 
 > One model, many facets.
@@ -143,9 +141,6 @@ discuss licensing, **join the waiting list** by sending an email to
 **"Kotools Facet – Waiting List"**.
 
 ## 📄 License
-
-`facet` (this repository) is open source and published under the
-[MIT License](LICENSE.txt).
 
 The SDK modules are distributed under a commercial license. To enquire about
 licensing, contact us at [contact@kotools.org](mailto:contact@kotools.org).
