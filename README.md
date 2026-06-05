@@ -69,7 +69,7 @@ data class User(val id: UUID, val email: String) {
 
         val database = ExposedFacet {
             map(User::id, name = "user_id") { it.toString() }
-            rename(User::id, name = "user_email")
+            rename(User::email, name = "user_email")
         }
     }
 }
@@ -83,7 +83,8 @@ class or configuration file required.
   builders for each layer.
 - `KtorFacet {}` / `ExposedFacet {}` declare layer-specific projections using a
   type-safe DSL.
-- `hide()` removes a field from a projection; `map()` renames or transforms it.
+- `hide()` removes a field from a projection; `map()` transforms it; `rename()`
+  gives it a different name in the projection.
 
 This solution provides several benefits:
 
@@ -91,8 +92,8 @@ This solution provides several benefits:
   it. No parallel `UserEntity` or `UserHttpResponse` classes.
 - **Domain-first** — `hide()` and `map()` live on `User` itself, not in a
   service or mapper. Business rules stay with the model.
-- **No mappers** — `ktorFacet` and `exposedFacet` declare projections; the SDK
-  generates the glue at compile time.
+- **No mappers** — `KtorFacet {}` and `ExposedFacet {}` declare projections;
+  the SDK generates the glue at compile time.
 - **Less boilerplate** — no `UserEntity`, `UserHttpRequest`, or
   `UserHttpResponse` classes; no mapper functions to maintain.
 
@@ -127,7 +128,7 @@ dependencies {
     ksp("org.kotools:facet-ksp:<version>")
     implementation("org.kotools:facet-core:<version>")
     // Add only what your stack needs:
-    implementation("org.kotools:facet-ktor:<version>") 
+    implementation("org.kotools:facet-ktor:<version>")
     implementation("org.kotools:facet-exposed:<version>")
 }
 ```
