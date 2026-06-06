@@ -127,12 +127,6 @@ dependencies {
 }
 ```
 
-## 📝 Documentation
-
-Here's additional documentation for learning more about this project:
-
-- [Core API](documentation/core-api.md)
-
 ## 📬 Get Early Access
 
 Kotools Facet is commercial software. To get notified when it ships and to
