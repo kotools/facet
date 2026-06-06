@@ -23,7 +23,7 @@ A class marked by this annotation must have a companion object implementing
 ## `FacetHost` interface
 
 The `FacetHost<T>` interface provides access to facet definitions. It must be
-implemented by the companion object of the class `T`, marked by
+implemented by the `companion object` of the class `T`, marked by
 [`@Facet`](#facet-annotation).
 
 ```kotlin
