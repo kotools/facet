@@ -18,3 +18,8 @@ Enforced via `.editorconfig`:
 - Max line length: **80 characters** (visual guides at 80 and 90)
 - Charset: UTF-8, line endings: LF
 - Continuation indent: 8 spaces
+
+## Code Review
+
+After making code changes, run `/simplify` to check for reuse, simplification,
+and efficiency improvements before considering the task done.
