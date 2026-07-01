@@ -2,8 +2,6 @@
 
 ![Status: Early Development][badge-status]
 
-[badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
-
 > One model, many facets.
 
 Kotools Facet is a Kotlin SDK that lets you define your domain model once and
@@ -131,10 +129,14 @@ dependencies {
 
 Kotools Facet is commercial software. To get notified when it ships and to
 discuss licensing, **join the waiting list** by sending an email to
-[contact@kotools.org](mailto:contact@kotools.org) with the subject
-**"Kotools Facet – Waiting List"**.
+[contact@kotools.org] with the subject **"Kotools Facet – Waiting List"**.
 
 ## 📄 License
 
 The SDK modules are distributed under a commercial license. To enquire about
-licensing, contact us at [contact@kotools.org](mailto:contact@kotools.org).
+licensing, contact us at [contact@kotools.org].
+
+<!----------------------------------- LINKS ----------------------------------->
+
+[badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
+[contact@kotools.org]: mailto:contact@kotools.org
