@@ -10,15 +10,11 @@ beyond — without writing a single mapper.
 
 ## 😩 The Problem
 
-In a typical Kotlin backend, a single concept like `User` explodes into several
-parallel data structures:
+In a typical Kotlin backend, a single concept like `User` needs a parallel data
+structure to be persisted:
 
 ```kotlin
 // ------------------------------ Data structures ------------------------------
-
-// HTTP
-data class UserHttpRequest(val email: String)
-data class UserHttpResponse(val id: String, val email: String)
 
 // Domain
 data class User(val id: UUID, val email: String)
@@ -27,10 +23,6 @@ data class User(val id: UUID, val email: String)
 data class UserEntity(val id: String, val email: String)
 
 // ---------------------------------- Mappers ----------------------------------
-
-// HTTP
-fun UserHttpRequest.toUser(): User = User(UUID.randomUUID(), email)
-fun User.toResponse(): UserHttpResponse = UserHttpResponse(id.toString(), email)
 
 // Persistence
 fun User.toEntity(): UserEntity = UserEntity(id.toString(), email)
@@ -54,26 +46,26 @@ should see it, and Kotools Facet takes care of the rest at compile time.
 @Facet
 data class User(val id: UUID, val email: String) {
     companion object : FacetHost<User> {
-        val httpRequest = FacetBlueprint {
-            hide(User::id) { UUID.randomUUID() }
-        }
-
-        val httpResponse = FacetBlueprint {
-            map(User::id) { it.toString() }
+        val entity: BidirectionalFacet<User> = bidirectionalFacet {
+            map(
+                User::id,
+                transformInput = { UUID.fromString(it) },
+                transformOutput = { it.toString() }
+            )
         }
     }
 }
 ```
 
-The `companion object` is the projection registry for `User` — no separate
-class or configuration file required.
+The `companion object` is the projection registry for `User` — no separate class
+or configuration file required.
 
 - `@Facet` marks the class for compile-time projection processing.
 - `FacetHost<T>` is implemented by the companion object to expose projection
   builders for each layer.
 - `FacetBlueprint {}` declares layer-specific projections using a type-safe DSL.
-- `hide()` removes a field from a projection; `map()` transforms it; `rename()`
-  gives it a different name in the projection.
+- Within `bidirectionalFacet {}`, `hide()` removes a field from a projection;
+  `map()` transforms it; `rename()` gives it a different name in the projection.
 
 This solution provides several benefits:
 
@@ -83,22 +75,17 @@ This solution provides several benefits:
   service or mapper. Business rules stay with the model.
 - **No mappers** — `FacetBlueprint {}` declares projections; the SDK generates
   the glue at compile time.
-- **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes;
-  no mapper functions to maintain.
+- **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes; no
+  mapper functions to maintain.
 
 ## 📦 Modules
 
-Facet currently ships two required modules.
+Facet currently ships the following modules:
 
 | Module       | What it does                                                |
 |--------------|-------------------------------------------------------------|
 | `facet-core` | DSL and `@Facet` annotation — required by all other modules |
 | `facet-ksp`  | KSP processor — generates projection code at compile time   |
-
-> All modules require `facet-core`. `facet-ksp` is a build-time KSP processor
-> required for compile-time code generation.
-
-Integrations with Ktor and Exposed are on the way — stay tuned.
 
 ## 🚀 Getting Started
 
@@ -115,8 +102,8 @@ plugins {
 }
 
 dependencies {
-    ksp("org.kotools:facet-ksp:<version>")
-    implementation("org.kotools:facet-core:<version>")
+    ksp("org.kotools:facet-ksp:<facet-version>")
+    implementation("org.kotools:facet-core:<facet-version>")
 }
 ```
 
