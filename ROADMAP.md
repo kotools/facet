@@ -22,6 +22,26 @@ timeline — plans may shift as the SDK evolves.
 - `facet-ksp` module — KSP processor generating projection code at compile time
 - Gradle setup via the KSP plugin (`com.google.devtools.ksp`)
 
+## 🔖 1.1
+
+**Feature**: Input-only and output-only facets
+
+**Integration**: Kotlin Serialization — `@Serializable` facet, `renameSerial`
+property operation (`facet-kotlinx-serialization` module)
+
+## 🔖 1.2
+
+**Integration**: Ktor (`facet-ktor` module)
+
+## 🔖 1.3
+
+**Integration**: Exposed (`facet-exposed` module)
+
+## 🔖 1.4
+
+**Integration**: `org.kotools.facet` Gradle plugin — required dependencies +
+additional ones via extension DSL
+
 ## ⏳ Later plans
 
 **Platforms**:
@@ -31,16 +51,10 @@ timeline — plans may shift as the SDK evolves.
 
 **Features**:
 
-- Input-only and output-only facets
 - `validate` property operation
 
 **Integrations**:
 
-- Gradle plugin — required dependencies + additional ones via extension DSL
-- Kotlin Serialization — `@Serializable` facet, `renameSerial` property
-  operation
-- Ktor
-- Exposed
 - Spring Boot
 - SQLDelight
 - GraphQL
