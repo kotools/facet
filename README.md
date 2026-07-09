@@ -43,7 +43,7 @@ With Kotools Facet, your domain model is the only model. Declare how each layer
 should see it, and Kotools Facet takes care of the rest at compile time.
 
 ```kotlin
-@Facet
+@Faceted
 data class User(val id: UUID, val email: String) {
     companion object : FacetHost<User> {
         val entity: BidirectionalFacet<User> = bidirectionalFacet {
@@ -60,10 +60,9 @@ data class User(val id: UUID, val email: String) {
 The `companion object` is the projection registry for `User` — no separate class
 or configuration file required.
 
-- `@Facet` marks the class for compile-time projection processing.
+- `@Faceted` marks the class for compile-time projection processing.
 - `FacetHost<T>` is implemented by the companion object to expose projection
   builders for each layer.
-- `FacetBlueprint {}` declares layer-specific projections using a type-safe DSL.
 - Within `bidirectionalFacet {}`, `hide()` removes a field from a projection;
   `map()` transforms it; `rename()` gives it a different name in the projection.
 
@@ -73,19 +72,19 @@ This solution provides several benefits:
   it. No parallel `UserEntity` or `UserHttpResponse` classes.
 - **Domain-first** — `hide()` and `map()` live on `User` itself, not in a
   service or mapper. Business rules stay with the model.
-- **No mappers** — `FacetBlueprint {}` declares projections; the SDK generates
-  the glue at compile time.
+- **No mappers** — `bidirectionalFacet {}` declares projections; the SDK
+  generates the glue at compile time.
 - **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes; no
   mapper functions to maintain.
 
 ## 📦 Modules
 
-Facet currently ships the following modules:
+Kotools Facet currently ships the following modules:
 
-| Module       | What it does                                                |
-|--------------|-------------------------------------------------------------|
-| `facet-core` | DSL and `@Facet` annotation — required by all other modules |
-| `facet-ksp`  | KSP processor — generates projection code at compile time   |
+| Module       | What it does                                                  |
+|--------------|---------------------------------------------------------------|
+| `facet-core` | DSL and `@Faceted` annotation — required by all other modules |
+| `facet-ksp`  | KSP processor — generates projection code at compile time     |
 
 ## 🚀 Getting Started
 
@@ -118,7 +117,7 @@ discuss licensing, **join the waiting list** by sending an email to
 The SDK modules are distributed under a commercial license. To enquire about
 licensing, contact us at [contact@kotools.org].
 
-<!----------------------------------- LINKS ----------------------------------->
+<!----------------------------------- Links ----------------------------------->
 
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
 [contact@kotools.org]: mailto:contact@kotools.org
