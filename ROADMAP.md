@@ -6,6 +6,10 @@ timeline — plans may shift as the SDK evolves.
 
 ## 🔖 1.0
 
+**Platform**: Kotlin/JVM
+
+**Features**:
+
 - `@Faceted` annotation marking a class for compile-time projection processing
 - `FacetHost<T>` interface, implemented by a class's companion object to expose
   projection builders
@@ -20,15 +24,24 @@ timeline — plans may shift as the SDK evolves.
 
 ## ⏳ Later plans
 
+**Platforms**:
+
+- Kotlin Multiplatform (Common + JS)
+- Kotlin/Native
+
+**Features**:
+
 - Input-only and output-only facets
 - `validate` property operation
-- Integration with Kotlin Serialization
-    - Serializable facet
-    - `renameSerial` property operation
-- Framework and library integrations
-    - Ktor
-    - Exposed
-    - Spring Boot
-    - SQLDelight
-    - GraphQL
-    - jOOQ
+
+**Integrations**:
+
+- Gradle plugin — required dependencies + additional ones via extension DSL
+- Kotlin Serialization — `@Serializable` facet, `renameSerial` property
+  operation
+- Ktor
+- Exposed
+- Spring Boot
+- SQLDelight
+- GraphQL
+- jOOQ
