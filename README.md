@@ -86,6 +86,8 @@ Kotools Facet currently ships the following modules:
 | `facet-core` | DSL and `@Faceted` annotation — required by all other modules |
 | `facet-ksp`  | KSP processor — generates projection code at compile time     |
 
+See [roadmap] for what's planned next.
+
 ## 🚀 Getting Started
 
 > **Note:** Kotools Facet is currently in early development. Installation
@@ -121,3 +123,4 @@ licensing, contact us at [contact@kotools.org].
 
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
 [contact@kotools.org]: mailto:contact@kotools.org
+[roadmap]: ./ROADMAP.md
