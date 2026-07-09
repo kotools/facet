@@ -14,10 +14,7 @@ developer.
 
 ## Code Style
 
-Enforced via `.editorconfig`:
-- Max line length: **80 characters** (visual guides at 80 and 90)
-- Charset: UTF-8, line endings: LF
-- Continuation indent: 8 spaces
+See @.editorconfig file for code style conventions.
 
 ## Code Review
 
