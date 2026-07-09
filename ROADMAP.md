@@ -26,18 +26,20 @@ timeline — plans may shift as the SDK evolves.
 
 **Feature**: Input-only and output-only facets
 
+## 🔖 1.2
+
 **Integration**: Kotlin Serialization — `@Serializable` facet, `renameSerial`
 property operation (`facet-kotlinx-serialization` module)
 
-## 🔖 1.2
+## 🔖 1.3
 
 **Integration**: Ktor (`facet-ktor` module)
 
-## 🔖 1.3
+## 🔖 1.4
 
 **Integration**: Exposed (`facet-exposed` module)
 
-## 🔖 1.4
+## 🔖 1.5
 
 **Integration**: `org.kotools.facet` Gradle plugin — required dependencies +
 additional ones via extension DSL
