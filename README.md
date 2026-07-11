@@ -16,17 +16,39 @@ structure to be persisted:
 ```kotlin
 // ------------------------------ Data structures ------------------------------
 
-// Domain
-data class User(val id: UUID, val email: String)
+data class User(
+    val uuid: UUID,
+    val name: String,
+    val email: String,
+    val role: Role,
+    val isVerified: Boolean
+)
 
-// Persistence
-data class UserEntity(val id: String, val email: String)
+enum class Role { ADMINISTRATOR, DEVELOPER }
+
+data class UserEntity(
+    val id: String,
+    val emailAddress: String,
+    val role: String,
+    val isVerified: Boolean
+)
 
 // ---------------------------------- Mappers ----------------------------------
 
-// Persistence
-fun User.toEntity(): UserEntity = UserEntity(id.toString(), email)
-fun UserEntity.toUser(): User = User(UUID.fromString(id), email)
+fun User.toUserEntity(): UserEntity = UserEntity(
+    id = uuid.toString(),
+    emailAddress = email,
+    role = role.name,
+    isVerified = isVerified
+)
+
+fun UserEntity.toUser(): User = User(
+    uuid = UUID.fromString(id),
+    email = emailAddress,
+    role = Role.valueOf(role),
+    isVerified = isVerified,
+    name = emailAddress.substringBefore('@')
+)
 ```
 
 This pattern leads to:
@@ -44,17 +66,34 @@ should see it, and Kotools Facet takes care of the rest at compile time.
 
 ```kotlin
 @Faceted
-data class User(val id: UUID, val email: String) {
+data class User(
+    val uuid: UUID,
+    val name: String,
+    val email: String,
+    val role: Role,
+    val isVerified: Boolean
+) {
     companion object : FacetHost<User> {
-        val entity: BidirectionalFacet<User> = bidirectionalFacet {
-            map(
-                User::id,
-                transformInput = { UUID.fromString(it) },
-                transformOutput = { it.toString() }
+        val entity by bidirectionalFacet {
+            recode(
+                property = User::uuid,
+                name = "id",
+                transformOutput = { it.toString() },
+                transformInput = { UUID.fromString(it) }
             )
+            val email = rename(User::email, "emailAddress")
+            map(
+                property = User::role,
+                transformOutput = { it.name },
+                transformInput = { input: String -> Role.valueOf(input) }
+            )
+            show(User::isVerified)
+            hide(User::name, email) { it.substringBefore('@') }
         }
     }
 }
+
+enum class Role { ADMINISTRATOR, DEVELOPER }
 ```
 
 The `companion object` is the projection registry for `User` — no separate class
@@ -63,15 +102,23 @@ or configuration file required.
 - `@Faceted` marks the class for compile-time projection processing.
 - `FacetHost<T>` is implemented by the companion object to expose projection
   builders for each layer.
-- Within `bidirectionalFacet {}`, `hide()` removes a field from a projection;
-  `map()` transforms it; `rename()` gives it a different name in the projection.
+- Within `bidirectionalFacet {}`, every operation below returns a reusable
+  reference to the facet's property, except `hide()`:
+    - `show()` preserves a field into a projection;
+    - `hide()` removes it from a projection, optionally reconstructing it from
+      another property's reference via a transform lambda when mapping back to
+      the domain model;
+    - `rename()` gives it a different name in the projection;
+    - `map()` transforms it;
+    - `recode()` renames and transforms it (`rename()` + `map()`).
 
 This solution provides several benefits:
 
 - **Single source of truth** — `User` is declared once; every layer reads from
   it. No parallel `UserEntity` or `UserHttpResponse` classes.
-- **Domain-first** — `hide()` and `map()` live on `User` itself, not in a
-  service or mapper. Business rules stay with the model.
+- **Domain-first** — `show()`, `hide()`, `rename()`, `map()` and `recode()` live
+  on `User` itself, not in a service or mapper. Business rules stay with the
+  model.
 - **No mappers** — `bidirectionalFacet {}` declares projections; the SDK
   generates the glue at compile time.
 - **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes; no
