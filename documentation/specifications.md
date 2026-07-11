@@ -27,11 +27,12 @@ violation and therefore produces no diagnostic.
 annotation class Faceted
 ```
 
-- A declaration annotated with `@Faceted` is referred to as a
+- A class declaration annotated with `@Faceted` is referred to as a
   _faceted declaration_.
 - A _faceted declaration_ MUST be top-level.
 - A _faceted declaration_ MUST be public or internal.
 - A _faceted declaration_ MUST be a data class.
+- The primary constructor of a _faceted declaration_ MUST be public or internal.
 - A _faceted declaration_ that respects requirements above is referred to as a
   _faceted class_.
 - A _faceted class_ SHOULD have a companion object.
