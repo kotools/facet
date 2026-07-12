@@ -15,8 +15,3 @@ developer.
 ## Code Style
 
 See @.editorconfig file for code style conventions.
-
-## Code Review
-
-After making code changes, run `/simplify` to check for reuse, simplification,
-and efficiency improvements before considering the task done.
