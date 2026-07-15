@@ -155,7 +155,6 @@ dependencies {
 
 ## 📚 Additional Documentation
 
-- [Specifications] — formal rules for the SDK's public API
 - [Roadmap] — what's planned next
 - [Changelog] — release history
 - [Versioning strategy] — our backward-compatibility policy
@@ -177,5 +176,4 @@ licensing, contact us at [contact@kotools.org].
 [changelog]: CHANGELOG.md
 [contact@kotools.org]: mailto:contact@kotools.org
 [roadmap]: ROADMAP.md
-[specifications]: documentation/specifications.md
 [versioning strategy]: documentation/versioning-strategy.md
