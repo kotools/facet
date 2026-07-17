@@ -25,6 +25,8 @@ All notable changes to this project will be documented in this file.
 - The `@ExperimentalKotoolsFacetApi` annotation, indicating that a declaration
   is experimental and can be incompatibly changed in the future. See also our
   [versioning strategy] and [declarations lifecycle] for more details.
+- The `@KotoolsFacetDsl` annotation, indicating that a class declaration is part
+  of Kotools Facet's DSL.
 
 <!----------------------------------- Links ----------------------------------->
 
