@@ -158,6 +158,7 @@ dependencies {
 - [Roadmap] — what's planned next
 - [Changelog] — release history
 - [Versioning strategy] — our backward-compatibility policy
+- [Declarations lifecycle] — stability stages and evolution principles
 
 ## 📬 Get Early Access
 
@@ -175,5 +176,6 @@ licensing, contact us at [contact@kotools.org].
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
 [changelog]: CHANGELOG.md
 [contact@kotools.org]: mailto:contact@kotools.org
+[declarations lifecycle]: documentation/declarations-lifecycle.md
 [roadmap]: ROADMAP.md
 [versioning strategy]: documentation/versioning-strategy.md
