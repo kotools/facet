@@ -22,7 +22,12 @@ All notable changes to this project will be documented in this file.
   processor: a faceted class must be top-level, public or internal, a data
   class, and have a primary constructor that is public or internal; it should
   also declare a companion object.
+- The `@ExperimentalKotoolsFacetApi` annotation, indicating that a declaration
+  is experimental and can be incompatibly changed in the future. See also our
+  [versioning strategy] and [declarations lifecycle] for more details.
 
 <!----------------------------------- Links ----------------------------------->
 
+[declarations lifecycle]: documentation/declarations-lifecycle.md
 [Keep a Changelog]: https://keepachangelog.com/en/2.0.0
+[versioning strategy]: documentation/versioning-strategy.md
