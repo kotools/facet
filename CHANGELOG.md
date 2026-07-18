@@ -27,6 +27,9 @@ All notable changes to this project will be documented in this file.
   [versioning strategy] and [declarations lifecycle] for more details.
 - The `@KotoolsFacetDsl` annotation, indicating that a class declaration is part
   of Kotools Facet's DSL.
+- The `FacetHost` interface to the `facet-core` module, providing access to
+  facet definitions, and its associated compile-time checks to the `facet-ksp`
+  module.
 
 <!----------------------------------- Links ----------------------------------->
 
