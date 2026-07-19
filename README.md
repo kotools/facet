@@ -50,7 +50,7 @@ data class User(val id: UUID, val email: String) {
 
 // Generates:
 // - UserEntity data class
-// - User.toUserEntity() and UserEntity.toUser() functions
+// - User.toUserEntity() and UserEntity.toUser() extension functions
 ```
 
 - The `companion object` is the projection registry for `User` — no separate
