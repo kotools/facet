@@ -14,41 +14,11 @@ In a typical Kotlin backend, a single concept like `User` needs a parallel data
 structure to be persisted:
 
 ```kotlin
-// ------------------------------ Data structures ------------------------------
+data class User(val id: UUID, val email: String)
+data class UserEntity(val id: String, val email: String)
 
-data class User(
-    val uuid: UUID,
-    val name: String,
-    val email: String,
-    val role: Role,
-    val isVerified: Boolean
-)
-
-enum class Role { ADMINISTRATOR, DEVELOPER }
-
-data class UserEntity(
-    val id: String,
-    val emailAddress: String,
-    val role: String,
-    val isVerified: Boolean
-)
-
-// ---------------------------------- Mappers ----------------------------------
-
-fun User.toUserEntity(): UserEntity = UserEntity(
-    id = uuid.toString(),
-    emailAddress = email,
-    role = role.name,
-    isVerified = isVerified
-)
-
-fun UserEntity.toUser(): User = User(
-    uuid = UUID.fromString(id),
-    email = emailAddress,
-    role = Role.valueOf(role),
-    isVerified = isVerified,
-    name = emailAddress.substringBefore('@')
-)
+fun User.toUserEntity(): UserEntity = UserEntity(id.toString(), email)
+fun UserEntity.toUser(): User = User(UUID.fromString(id), email)
 ```
 
 This pattern leads to:
@@ -66,59 +36,37 @@ should see it, and Kotools Facet takes care of the rest at compile time.
 
 ```kotlin
 @Faceted
-data class User(
-    val uuid: UUID,
-    val name: String,
-    val email: String,
-    val role: Role,
-    val isVerified: Boolean
-) {
+data class User(val id: UUID, val email: String) {
     companion object : FacetHost<User> {
-        val entity by bidirectionalFacet {
-            recode(
-                property = User::uuid,
-                name = "id",
+        val entity: BidirectionalFacet<User> by bidirectionalFacet {
+            map(
+                property = User::id,
                 transformOutput = { it.toString() },
                 transformInput = { UUID.fromString(it) }
             )
-            val email = rename(User::email, "emailAddress")
-            map(
-                property = User::role,
-                transformOutput = { it.name },
-                transformInput = { input: String -> Role.valueOf(input) }
-            )
-            show(User::isVerified)
-            hide(User::name, email) { it.substringBefore('@') }
         }
     }
 }
 
-enum class Role { ADMINISTRATOR, DEVELOPER }
+// Generates:
+// - UserEntity data class
+// - User.toUserEntity() and UserEntity.toUser() functions
 ```
 
-The `companion object` is the projection registry for `User` — no separate class
-or configuration file required.
-
+- The `companion object` is the projection registry for `User` — no separate
+  class or configuration file required.
 - `@Faceted` marks the class for compile-time projection processing.
 - `FacetHost<T>` is implemented by the companion object to expose projection
   builders for each layer.
-- Within `bidirectionalFacet {}`, every operation below returns a reusable
-  reference to the facet's property, except `hide()`:
-    - `show()` preserves a field into a projection;
-    - `hide()` removes it from a projection, optionally reconstructing it from
-      another property's reference via a transform lambda when mapping back to
-      the domain model;
-    - `rename()` gives it a different name in the projection;
-    - `map()` transforms it;
-    - `recode()` renames and transforms it (`rename()` + `map()`).
+- Within `bidirectionalFacet {}`, declare the shape of the projection using
+  property operations, like `map()` transforming the property's value.
 
 This solution provides several benefits:
 
 - **Single source of truth** — `User` is declared once; every layer reads from
   it. No parallel `UserEntity` or `UserHttpResponse` classes.
-- **Domain-first** — `show()`, `hide()`, `rename()`, `map()` and `recode()` live
-  on `User` itself, not in a service or mapper. Business rules stay with the
-  model.
+- **Domain-first** — property operations live on `User` itself, not in a service
+  or mapper. Business rules stay with the model.
 - **No mappers** — `bidirectionalFacet {}` declares projections; the SDK
   generates the glue at compile time.
 - **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes; no
