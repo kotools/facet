@@ -12,13 +12,12 @@ timeline — plans may shift as the SDK evolves.
     - `FacetHost<T>` interface, implemented by a class's companion object to
       expose projection builders
     - `bidirectionalFacet` function declaring two-way projections
-    - `show` property operation preserving it into the projection
-    - `hide` property operation removing it from the projection
-    - `rename` property operation giving it another name in the projection
-    - `map` property operation transforming its value between the domain model
-      and the projection
-    - `recode` property operation giving it another name and transforming its
-      value in the projection (`rename` + `map`)
+    - `show` function adding a property to the projection
+    - `hide` function removing a property from the projection
+    - `rename` function renaming a property in the projection
+    - `map` function transforming a property's in the projection
+    - `recode` function renaming a property and transforming its value in the
+      projection (`rename` + `map`)
 - KSP processor generating projection code at compile time (`facet-ksp` module)
 - Kotlin/JVM platform
 
