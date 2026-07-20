@@ -72,6 +72,22 @@ This solution provides several benefits:
 - **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes; no
   mapper functions to maintain.
 
+## 🆚 Not Just Another Mapper Generator
+
+Several KSP and compiler-plugin tools already exist to generate mappers between
+two classes. They take a `UserDto` and a `UserEntity` you've already written and
+eliminate the `toEntity()` / `toDto()` boilerplate between them.
+
+Kotools Facet solves a more fundamental problem. Instead of just generating the
+glue *between* separate classes, it removes the need for those classes to exist
+in the first place. There's no `UserDto`, no `UserEntity` — only `User`, with
+its projections declared as part of the model itself.
+
+In short:
+
+- **Classic mappers** answer *"how do I convert A into B?"*
+- **Kotools Facet** answers *"why do I need B at all?"*
+
 ## 📦 Modules
 
 Kotools Facet currently ships the following modules:
