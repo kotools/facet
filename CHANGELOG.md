@@ -17,16 +17,16 @@ All notable changes to this project will be documented in this file.
 
 ### ✨ Added
 
-- The `@Faceted` annotation to the `facet-core` module, marking a class as a
+- The `@Faceted` annotation to the `facet-core-dsl` module, marking a class as a
   _faceted class_ with multiple compile-time projections ("facets"), and its
-  associated compile-time checks to the `facet-ksp` module.
-- The `@ExperimentalKotoolsFacetApi` annotation to `facet-core`, indicating that
-  a declaration is experimental and can be incompatibly changed in the future.
-  See also our [versioning strategy] and [declarations lifecycle].
-- The `@KotoolsFacetDsl` annotation to `facet-core`, indicating that a class
+  associated compile-time checks to the `facet-core-ksp` module.
+- The `@ExperimentalKotoolsFacetApi` annotation to `facet-core-dsl`, indicating
+  that a declaration is experimental and can be incompatibly changed in the
+  future. See also our [versioning strategy] and [declarations lifecycle].
+- The `@KotoolsFacetDsl` annotation to `facet-core-dsl`, indicating that a class
   declaration is part of Kotools Facet's DSL.
-- The `FacetHost` interface to `facet-core`, providing access to facet
-  definitions, and its associated compile-time checks to `facet-ksp`.
+- The `FacetHost` interface to `facet-core-dsl`, providing access to facet
+  definitions, and its associated compile-time checks to `facet-core-ksp`.
 
 <!----------------------------------- Links ----------------------------------->
 

@@ -92,10 +92,10 @@ In short:
 
 Kotools Facet currently ships the following modules:
 
-| Module       | What it does                                                  |
-|--------------|---------------------------------------------------------------|
-| `facet-core` | DSL and `@Faceted` annotation — required by all other modules |
-| `facet-ksp`  | KSP processor — generates projection code at compile time     |
+| Module           | What it does                                          |
+|------------------|-------------------------------------------------------|
+| `facet-core-dsl` | DSL and annotations — required by all other modules   |
+| `facet-core-ksp` | KSP processor — generates projections at compile time |
 
 ## 🚀 Getting Started
 
@@ -112,8 +112,8 @@ plugins {
 }
 
 dependencies {
-    ksp("org.kotools:facet-ksp:<facet-version>")
-    implementation("org.kotools:facet-core:<facet-version>")
+    ksp("org.kotools:facet-core-ksp:<facet-version>")
+    implementation("org.kotools:facet-core-dsl:<facet-version>")
 }
 ```
 

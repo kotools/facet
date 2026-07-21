@@ -6,7 +6,7 @@ timeline — plans may shift as the SDK evolves.
 
 ## 🔖 1.0
 
-- DSL for facet declarations (`facet-core` module)
+- DSL for facet declarations (`facet-core-dsl` module)
     - `@Faceted` annotation marking a class for compile-time projection
       processing
     - `FacetHost<T>` interface, implemented by a class's companion object to
@@ -18,7 +18,8 @@ timeline — plans may shift as the SDK evolves.
     - `map` function transforming a property's in the projection
     - `recode` function renaming a property and transforming its value in the
       projection (`rename` + `map`)
-- KSP processor generating projection code at compile time (`facet-ksp` module)
+- KSP processor generating projection code at compile time (`facet-core-ksp`
+  module)
 - Kotlin/JVM platform
 
 ## 🔖 1.1
