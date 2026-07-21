@@ -28,17 +28,18 @@ timeline — plans may shift as the SDK evolves.
 
 ## 🔖 1.2
 
-- Integration with Kotlin Serialization (`facet-kotlinx-serialization` module)
+- Integration with Kotlin Serialization (`facet-serialization` DSL and KSP
+  modules)
     - `@Serializable` facet
     - `renameSerial` property operation
 
 ## 🔖 1.3
 
-- Integration with Ktor (`facet-ktor` module)
+- Integration with Ktor (`facet-ktor` DSL and KSP modules)
 
 ## 🔖 1.4
 
-- Integration with Exposed (`facet-exposed` module)
+- Integration with Exposed (`facet-exposed` DSL and KSP modules)
 
 ## 🔖 1.5
 
