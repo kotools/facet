@@ -6,7 +6,7 @@
 
 Kotools Facet is a Kotlin SDK that lets you define your domain model once and
 project it across every layer of your application — HTTP, persistence, and
-beyond — without writing a single mapper.
+beyond — with no mappers and no parallel classes to maintain.
 
 ## 😩 The Problem
 
@@ -67,8 +67,8 @@ This solution provides several benefits:
   it. No parallel `UserEntity` or `UserHttpResponse` classes.
 - **Domain-first** — property operations live on `User` itself, not in a service
   or mapper. Business rules stay with the model.
-- **No mappers** — `bidirectionalFacet {}` declares projections; the SDK
-  generates the glue at compile time.
+- **No mappers** — `bidirectionalFacet {}` declares the projection's shape;
+  there's no conversion function to write or keep in sync.
 - **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes; no
   mapper functions to maintain.
 
@@ -76,17 +76,18 @@ This solution provides several benefits:
 
 Several KSP and compiler-plugin tools already exist to generate mappers between
 two classes. They take a `UserDto` and a `UserEntity` you've already written and
-eliminate the `toEntity()` / `toDto()` boilerplate between them.
+eliminate the `toEntity()` / `toDto()` boilerplate between them. Kotools Facet
+also runs on KSP — the difference isn't the tooling, but what problem it solves.
 
-Kotools Facet solves a more fundamental problem. Instead of just generating the
-glue *between* separate classes, it removes the need for those classes to exist
-in the first place. There's no `UserDto`, no `UserEntity` — only `User`, with
-its projections declared as part of the model itself.
+Instead of just generating the glue *between* separate classes, Kotools Facet
+removes the need for those classes to exist in the first place. There's no
+`UserDto`, no `UserEntity` — only `User`, with its projections declared as part
+of the model itself.
 
-In short:
-
-- **Classic mappers** answer *"how do I convert A into B?"*
-- **Kotools Facet** answers *"why do I need B at all?"*
+|                 | Answers                      | Requires                |
+|-----------------|------------------------------|-------------------------|
+| Classic mappers | *"How do I convert A to B?"* | `UserDto`, `UserEntity` |
+| Kotools Facet   | *"Why do I need B at all?"*  | Only `User`             |
 
 ## 📦 Modules
 
