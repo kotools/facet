@@ -27,6 +27,11 @@ All notable changes to this project will be documented in this file.
   declaration is part of Kotools Facet's DSL.
 - The `FacetHost` interface to `facet-core-dsl`, providing access to facet
   definitions, and its associated compile-time checks to `facet-core-ksp`.
+- The `bidirectionalFacet` function, its `BidirectionalFacet`,
+  `BidirectionalFacetScope` and `BidirectionalFacetDelegate` classes, to
+  `facet-core-dsl`, for declaring two-way projections; and, in `facet-core-ksp`,
+  the compile-time generation of the projection class and its two-way mapper
+  functions for every `by bidirectionalFacet { }` property.
 
 <!----------------------------------- Links ----------------------------------->
 
