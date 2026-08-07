@@ -50,7 +50,11 @@ timeline — plans may shift as the SDK evolves.
 
 - Kotlin Multiplatform (Common + JS)
 - Kotlin/Native
-- `validate` property operation
+- `validate(property, predicate)` function to check the validity of a `property`
+  against a `predicate`, and to generate a pair of mappers that
+  throw an exception or return `null` in case of invalid `property`
+- `mutable(property)` DSL function to control the mutability independent of the
+  source
 - Integration with Spring Boot
 - Integration with SQLDelight
 - Integration with GraphQL
