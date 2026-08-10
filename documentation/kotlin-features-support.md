@@ -1,10 +1,10 @@
 # 🧩 Kotlin features support
 
 This page tracks which Kotlin features the `facet-core-ksp` processor supports
-for a class marked `@Faceted`.
+for a class declaration marked by `@Faceted`.
 
-**⏳ Not supported yet** means the feature fits the Facet idea, a domain type
-with per-layer projections, but the processor doesn't handle it yet.
+**⏳ Not supported yet** means the feature fits the idea of Kotools Facet, a
+domain type with per-layer projections, but the processor doesn't handle it yet.
 
 **❌ Rejected** means the feature falls outside that idea: there's nothing
 meaningful to project, or generated mappers couldn't reconstruct the domain
