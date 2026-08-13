@@ -61,7 +61,7 @@ instance. See [Roadmap] for what's planned next.
 | Star projection               | `val items: List<*>`                 | ✅ Supported since 1.0 |
 | Declaration-site variance     | `val producer: Producer<out String>` | ✅ Supported since 1.0 |
 | Nullable type argument        | `val tags: List<String?>`            | ✅ Supported since 1.0 |
-| Type alias                    | `typealias Id = Long`                | ✅ Supported since 1.0 |
+| Type alias                    | `typealias Id = Long`                | ⏳ Not supported yet   |
 | Function type                 | `val onClick: () -> Unit`            | ✅ Supported since 1.0 |
 | Nullable function type        | `val onClick: (() -> Unit)?`         | ✅ Supported since 1.0 |
 | Multi-parameter function type | `val onMove: (Int, Int) -> Unit`     | ✅ Supported since 1.0 |
