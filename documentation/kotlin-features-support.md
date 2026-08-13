@@ -62,9 +62,9 @@ instance. See [Roadmap] for what's planned next.
 | Declaration-site variance     | `val producer: Producer<out String>` | ✅ Supported since 1.0 |
 | Nullable type argument        | `val tags: List<String?>`            | ✅ Supported since 1.0 |
 | Type alias                    | `typealias Id = Long`                | ⏳ Not supported yet   |
-| Function type                 | `val onClick: () -> Unit`            | ✅ Supported since 1.0 |
-| Nullable function type        | `val onClick: (() -> Unit)?`         | ✅ Supported since 1.0 |
-| Multi-parameter function type | `val onMove: (Int, Int) -> Unit`     | ✅ Supported since 1.0 |
+| Function type                 | `val onClick: () -> Unit`            | ⏳ Not supported yet   |
+| Nullable function type        | `val onClick: (() -> Unit)?`         | ⏳ Not supported yet   |
+| Multi-parameter function type | `val onMove: (Int, Int) -> Unit`     | ⏳ Not supported yet   |
 | Suspend function type         | `val onSync: suspend () -> Unit`     | ⏳ Not supported yet   |
 | Function type with receiver   | `val onClick: String.() -> Unit`     | ⏳ Not supported yet   |
 | Definitely non-null type      | `val value: T & Any`                 | ⏳ Not supported yet   |
