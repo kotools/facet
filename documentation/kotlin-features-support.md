@@ -12,28 +12,28 @@ instance. See [Roadmap] for what's planned next.
 
 ## 🏛️ Class declarations
 
-| Kotlin feature                               | Code example                                        | Status                 |
-|----------------------------------------------|-----------------------------------------------------|------------------------|
-| Top-level data class                         | `data class User(val id: Long)`                     | ✅ Supported since 1.0 |
-| Internal data class                          | `internal data class User(val id: Long)`            | ✅ Supported since 1.0 |
-| Internal primary constructor                 | `class User internal constructor(val id: Long)`     | ✅ Supported since 1.0 |
-| Companion object implementing `FacetHost<T>` | `companion object : FacetHost<User>`                | ✅ Supported since 1.0 |
-| Regular class                                | `class User(val id: Long)`                          | ⏳ Not supported yet   |
-| Abstract class                               | `abstract class User(val id: Long)`                 | ❌ Rejected            |
-| Object declaration                           | `object User`                                       | ❌ Rejected            |
-| Data object declaration                      | `data object User`                                  | ❌ Rejected            |
-| Annotation class                             | `annotation class User`                             | ❌ Rejected            |
-| Sealed class                                 | `sealed class User`                                 | ⏳ Not supported yet   |
-| Interface                                    | `interface User`                                    | ❌ Rejected            |
-| Sealed interface                             | `sealed interface User`                             | ⏳ Not supported yet   |
-| Enum class                                   | `enum class User { A, B }`                          | ⏳ Not supported yet   |
-| Value class                                  | `@JvmInline value class Id(val value: Long)`        | ⏳ Not supported yet   |
-| Generic data class                           | `data class Box<T>(val value: T)`                   | ⏳ Not supported yet   |
-| Nested class                                 | `class Outer { data class User(val id: Long) }`     | ⏳ Not supported yet   |
-| Local class                                  | `fun f() { data class User(val id: Long) }`         | ❌ Rejected            |
-| Private or protected class                   | `private data class User(val id: Long)`             | ❌ Rejected            |
-| Class without primary constructor            | `class User { constructor(id: Long) }`              | ❌ Rejected            |
-| Private constructor                          | `data class User private constructor(val id: Long)` | ❌ Rejected            |
+| Kotlin feature                                     | Code example                                        | Status                 |
+|----------------------------------------------------|-----------------------------------------------------|------------------------|
+| Top-level data class                               | `data class User(val id: Long)`                     | ✅ Supported since 1.0 |
+| Internal data class                                | `internal data class User(val id: Long)`            | ✅ Supported since 1.0 |
+| Internal primary constructor                       | `class User internal constructor(val id: Long)`     | ✅ Supported since 1.0 |
+| Nested object implementing `BidirectionalFacet<T>` | `object Entity : BidirectionalFacet<User>`          | ✅ Supported since 1.0 |
+| Regular class                                      | `class User(val id: Long)`                          | ⏳ Not supported yet   |
+| Abstract class                                     | `abstract class User(val id: Long)`                 | ❌ Rejected            |
+| Object declaration                                 | `object User`                                       | ❌ Rejected            |
+| Data object declaration                            | `data object User`                                  | ❌ Rejected            |
+| Annotation class                                   | `annotation class User`                             | ❌ Rejected            |
+| Sealed class                                       | `sealed class User`                                 | ⏳ Not supported yet   |
+| Interface                                          | `interface User`                                    | ❌ Rejected            |
+| Sealed interface                                   | `sealed interface User`                             | ⏳ Not supported yet   |
+| Enum class                                         | `enum class User { A, B }`                          | ⏳ Not supported yet   |
+| Value class                                        | `@JvmInline value class Id(val value: Long)`        | ⏳ Not supported yet   |
+| Generic data class                                 | `data class Box<T>(val value: T)`                   | ⏳ Not supported yet   |
+| Nested class                                       | `class Outer { data class User(val id: Long) }`     | ⏳ Not supported yet   |
+| Local class                                        | `fun f() { data class User(val id: Long) }`         | ❌ Rejected            |
+| Private or protected class                         | `private data class User(val id: Long)`             | ❌ Rejected            |
+| Class without primary constructor                  | `class User { constructor(id: Long) }`              | ❌ Rejected            |
+| Private constructor                                | `data class User private constructor(val id: Long)` | ❌ Rejected            |
 
 ## 🧱 Constructor properties
 

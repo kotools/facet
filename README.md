@@ -14,11 +14,33 @@ In a typical Kotlin backend, a single concept like `User` needs a parallel data
 structure to be persisted:
 
 ```kotlin
-data class User(val id: UUID, val email: String)
-data class UserEntity(val id: String, val email: String)
+data class User(
+    val id: UUID,
+    val email: String,
+    val password: String?,
+    val isAdmin: Boolean
+)
 
-fun User.toUserEntity(): UserEntity = UserEntity(id.toString(), email)
-fun UserEntity.toUser(): User = User(UUID.fromString(id), email)
+data class UserEntity(
+    val identifier: String,
+    val emailAddress: String,
+    val isAdmin: Boolean,
+    val name: String
+)
+
+fun User.toUserEntity(): UserEntity = UserEntity(
+    identifier = this.id.toString(),
+    emailAddress = this.email,
+    isAdmin = this.isAdmin,
+    name = this.email.substringBefore('@')
+)
+
+fun UserEntity.toUser(): User = User(
+    id = UUID.fromString(this.identifier),
+    email = this.emailAddress,
+    password = null,
+    isAdmin = this.isAdmin
+)
 ```
 
 This pattern leads to:
@@ -36,15 +58,29 @@ should see it, and Kotools Facet takes care of the rest at compile time.
 
 ```kotlin
 @Faceted
-data class User(val id: UUID, val email: String) {
-    companion object : FacetHost<User> {
-        val entity: BidirectionalFacet<User> by bidirectionalFacet {
-            map(
-                property = User::id,
-                transformOutput = { it.toString() },
-                transformInput = { UUID.fromString(it) }
-            )
-        }
+data class User(
+    val id: UUID,
+    val email: String,
+    val password: String?,
+    val isAdmin: Boolean
+) {
+    object Entity : BidirectionalFacet<User> {
+        @FacetPropertySource(value = "id")
+        val identifier: DomainFacetProperty<UUID, String> = this.map(
+            property = User::id,
+            facetValue = { it.toString() },
+            domainValue = { UUID.fromString(it) }
+        )
+
+        @FacetPropertySource(value = "email")
+        val emailAddress: DomainFacetProperty<String, String> =
+            this.rename(User::email)
+
+        val password: DomainOnlyProperty<Unit, String?> =
+            this.hide(User::password) { null }
+
+        val name: FacetOnlyProperty<User, String> =
+            this.compute { it.email.substringBefore('@') }
     }
 }
 
@@ -53,13 +89,13 @@ data class User(val id: UUID, val email: String) {
 // - User.toUserEntity() and UserEntity.toUser() extension functions
 ```
 
-- The `companion object` is the projection registry for `User` — no separate
-  class or configuration file required.
 - `@Faceted` marks the class for compile-time projection processing.
-- `FacetHost<T>` is implemented by the companion object to expose projection
-  builders for each layer.
-- Within `bidirectionalFacet {}`, declare the shape of the projection using
-  property operations, like `map()` transforming the property's value.
+- The `Entity` object declares a facet for `User` by implementing
+  `BidirectionalFacet`. No separate class or configuration file is required.
+- Within an object implementing `BidirectionalFacet`, declare the shape of the
+  facet using property operations, like `map` / `rename` / `hide` / `compute`.
+- Use `FacetPropertySource` when the name of a facet property differs from the
+  domain property.
 
 This solution provides several benefits:
 
@@ -67,8 +103,8 @@ This solution provides several benefits:
   it. No parallel `UserEntity` or `UserHttpResponse` classes.
 - **Domain-first** — property operations live on `User` itself, not in a service
   or mapper. Business rules stay with the model.
-- **No mappers** — `bidirectionalFacet {}` declares the projection's shape;
-  there's no conversion function to write or keep in sync.
+- **No mappers** — `BidirectionalFacet` declares the projection's shape; there's
+  no conversion function to write or keep in sync.
 - **Less boilerplate** — no `UserHttpRequest` or `UserHttpResponse` classes; no
   mapper functions to maintain.
 

@@ -9,15 +9,16 @@ timeline — plans may shift as the SDK evolves.
 - DSL for facet declarations (`facet-core-dsl` module)
     - `@Faceted` annotation marking a class for compile-time projection
       processing
-    - `FacetHost<T>` interface, implemented by a class's companion object to
-      expose projection builders
-    - `bidirectionalFacet` function declaring two-way projections
-    - `show` function adding a property to the projection
-    - `hide` function removing a property from the projection
-    - `rename` function renaming a property in the projection
-    - `map` function transforming a property's in the projection
-    - `recode` function renaming a property and transforming its value in the
-      projection (`rename` + `map`)
+    - `@FacetPropertySource` annotation that associates a facet property
+      declaration with a property declared by the faceted class
+    - `BidirectionalFacet` interface declaring two-way projections
+    - `BidirectionalFacet.rename` function that renames a domain property
+      without changing its type
+    - `BidirectionalFacet.map` function that transforms a domain property's type
+    - `BidirectionalFacet.compute` function that declares a facet property
+      computed from the faceted class
+    - `BidirectionalFacet.hide` function that excludes a domain property from a
+      facet
 - KSP processor generating projection code at compile time (`facet-core-ksp`
   module)
 - Kotlin/JVM platform
