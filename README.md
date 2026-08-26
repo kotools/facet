@@ -161,6 +161,7 @@ dependencies {
 - [Versioning strategy] — our backward-compatibility policy
 - [Declarations lifecycle] — stability stages and evolution principles
 - [Kotlin features support] — supported and unsupported Kotlin features
+- [Terminology] — vocabulary used across this project's documentation
 
 ## 📬 Get Early Access
 
@@ -181,4 +182,5 @@ licensing, contact us at [contact@kotools.org].
 [declarations lifecycle]: documentation/declarations-lifecycle.md
 [kotlin features support]: documentation/kotlin-features-support.md
 [roadmap]: ROADMAP.md
+[terminology]: documentation/terminology.md
 [versioning strategy]: documentation/versioning-strategy.md
