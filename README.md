@@ -66,21 +66,18 @@ data class User(
 ) {
     object Entity : BidirectionalFacet<User> {
         @FacetPropertySource(value = "id")
-        val identifier: DomainFacetProperty<UUID, String> = this.map(
+        val identifier = map(
             property = User::id,
             facetValue = { it.toString() },
             domainValue = { UUID.fromString(it) }
         )
 
         @FacetPropertySource(value = "email")
-        val emailAddress: DomainFacetProperty<String, String> =
-            this.rename(User::email)
+        val emailAddress = rename(User::email)
 
-        val password: DomainOnlyProperty<Unit, String?> =
-            this.hide(User::password) { null }
+        val password = hide(User::password) { null }
 
-        val name: FacetOnlyProperty<User, String> =
-            this.compute { it.email.substringBefore('@') }
+        val name = compute { it.email.substringBefore('@') }
     }
 }
 
