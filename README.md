@@ -65,14 +65,14 @@ data class User(
     val isAdmin: Boolean
 ) {
     object Entity : BidirectionalFacet<User> {
-        @FacetPropertySource(value = "id")
+        @FacetPropertySource("id")
         val identifier = map(
             property = User::id,
             facetValue = { it.toString() },
             domainValue = { UUID.fromString(it) }
         )
 
-        @FacetPropertySource(value = "email")
+        @FacetPropertySource("email")
         val emailAddress = rename(User::email)
 
         val password = hide(User::password) { null }
