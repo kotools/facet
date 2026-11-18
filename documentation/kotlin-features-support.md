@@ -93,4 +93,4 @@ Found a feature missing here, or one that should move from `❌ Rejected` to
 <!----------------------------------- Links ----------------------------------->
 
 [open-an-issue]: https://github.com/kotools/facet/issues
-[roadmap]: ../ROADMAP.md
+[roadmap]: roadmap.md

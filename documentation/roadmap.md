@@ -1,4 +1,4 @@
-# 🗺️ Kotools Facet : Roadmap
+# 🗺️ Roadmap
 
 This roadmap outlines what's planned for Kotools Facet. It reflects current
 thinking and priorities, not a committed timeline. Plans may shift as the SDK

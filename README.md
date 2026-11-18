@@ -123,5 +123,5 @@ licensing, contact us at [contact@kotools.org].
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
 [contact@kotools.org]: mailto:contact@kotools.org
 [kotlin features support]: documentation/kotlin-features-support.md
-[roadmap]: ROADMAP.md
+[roadmap]: documentation/roadmap.md
 [terminology]: documentation/terminology.md
