@@ -36,7 +36,7 @@ This pattern leads to:
 ## ✨ Solution
 
 With Kotools Facet, the domain model is the only model. Declare each facet in
-it, and Kotools Facet takes care of the rest at compile-time.
+it, and this SDK takes care of the rest at compile-time.
 
 ```kotlin
 // Client code:
