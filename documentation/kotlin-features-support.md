@@ -1,20 +1,20 @@
 # 🧩 Kotlin features support
 
-This page tracks which Kotlin features the `facet-core-ksp` processor supports
-for a class declaration marked by `@Faceted`.
+This page tracks which Kotlin features the KSP processor of Kotools Facet
+supports for a faceted class.
 
-**⏳ Not supported yet** means the feature fits the idea of Kotools Facet, a
-domain type with per-layer projections, but the processor doesn't handle it yet.
+`⏳ Not supported yet` means that the feature fits the idea of Kotools Facet, a
+domain type with projections, but the processor doesn't handle it yet.
 
-**❌ Rejected** means the feature falls outside that idea: there's nothing
+`❌ Rejected` means that the feature falls outside that idea. There's nothing
 meaningful to project, or generated mappers couldn't reconstruct the domain
-instance. See [Roadmap] for what's planned next.
+instance.
 
 ## 🏛️ Class declarations
 
 | Kotlin feature                    | Code example                                        | Status                 |
 |-----------------------------------|-----------------------------------------------------|------------------------|
-| Top-level public data class       | `data class User(val id: Long)`                     | ✅ Supported since 1.0 |
+| Top-level public data class       | `data class User(val id: Long)`                     | ✅ Supported since 0.1 |
 | Internal data class               | `internal data class User(val id: Long)`            | ⏳ Not supported yet   |
 | Internal primary constructor      | `class User internal constructor(val id: Long)`     | ⏳ Not supported yet   |
 | Regular class                     | `class User(val id: Long)`                          | ⏳ Not supported yet   |
@@ -38,10 +38,10 @@ instance. See [Roadmap] for what's planned next.
 
 | Kotlin feature                     | Code example                                   | Status                 |
 |------------------------------------|------------------------------------------------|------------------------|
-| Public property                    | `data class User(public val id: Long)`         | ✅ Supported since 1.0 |
+| Public property                    | `data class User(public val id: Long)`         | ✅ Supported since 0.1 |
 | Internal property                  | `data class User(internal val id: Long)`       | ⏳ Not supported yet   |
 | Private or protected property      | `data class User(private val id: Long)`        | ❌ Rejected            |
-| Read-only property (`val`)         | `data class User(val id: Long)`                | ✅ Supported since 1.0 |
+| Read-only property (`val`)         | `data class User(val id: Long)`                | ✅ Supported since 0.1 |
 | Mutable property (`var`)           | `data class User(var id: Long)`                | ⏳ Not supported yet   |
 | Non-property constructor parameter | `data class User(id: Long)`                    | ❌ Rejected            |
 | Default parameter value            | `data class User(val page: Int = 1)`           | ⏳ Not supported yet   |
@@ -53,13 +53,13 @@ instance. See [Roadmap] for what's planned next.
 
 | Kotlin feature                | Code example                         | Status                 |
 |-------------------------------|--------------------------------------|------------------------|
-| Imported type                 | `val id: java.lang.UUID`             | ✅ Supported since 1.0 |
-| Generic type                  | `val tags: List<String>`             | ✅ Supported since 1.0 |
-| Nested generic type           | `val data: Map<String, List<Int>>`   | ✅ Supported since 1.0 |
-| Star projection               | `val items: List<*>`                 | ✅ Supported since 1.0 |
-| Declaration-site variance     | `val producer: Producer<out String>` | ✅ Supported since 1.0 |
-| Nullable type                 | `val email: String?`                 | ✅ Supported since 1.0 |
-| Nullable type argument        | `val tags: List<String?>`            | ✅ Supported since 1.0 |
+| Imported type                 | `val id: java.lang.UUID`             | ✅ Supported since 0.1 |
+| Generic type                  | `val tags: List<String>`             | ✅ Supported since 0.1 |
+| Nested generic type           | `val data: Map<String, List<Int>>`   | ✅ Supported since 0.1 |
+| Star projection               | `val items: List<*>`                 | ✅ Supported since 0.1 |
+| Declaration-site variance     | `val producer: Producer<out String>` | ✅ Supported since 0.1 |
+| Nullable type                 | `val email: String?`                 | ✅ Supported since 0.1 |
+| Nullable type argument        | `val tags: List<String?>`            | ✅ Supported since 0.1 |
 | Type alias                    | `typealias Id = Long`                | ⏳ Not supported yet   |
 | Function type                 | `val onClick: () -> Unit`            | ⏳ Not supported yet   |
 | Nullable function type        | `val onClick: (() -> Unit)?`         | ⏳ Not supported yet   |
@@ -77,18 +77,20 @@ instance. See [Roadmap] for what's planned next.
 | Delegated property                           | `val lazy by lazy { compute() }`                    | ❌ Rejected            |
 | Secondary constructor                        | `constructor(name: String) : this(0, name)`         | ❌ Rejected            |
 | Member function                              | `fun greet(): String = "Hi, $name"`                 | ❌ Rejected            |
-| Nested object implementing `*Facet`          | `object Entity : BidirectionalFacet<User>`          | ✅ Supported since 1.0 |
+| Nested object implementing `*Facet`          | `object Entity : BidirectionalFacet<User>`          | ✅ Supported since 0.1 |
 | Internal nested object implementing `*Facet` | `internal object Entity : BidirectionalFacet<User>` | ⏳ Not supported yet   |
 | Private nested object implementing `*Facet`  | `private object Entity : BidirectionalFacet<User>`  | ❌ Rejected            |
 | Nested data object implementing `*Facet`     | `data object Entity : BidirectionalFacet<User>`     | ⏳ Not supported yet   |
 
 ## 🗺️ What's next
 
-See [Roadmap] for planned work, such as input-only and output-only facets. Every
-`⏳ Not supported yet` row is a candidate for a future release. Found a feature
-missing here, or one that should move from ❌ to ⏳? [Open an issue].
+See [Roadmap] for planned work. Every `⏳ Not supported yet` row is a candidate
+for a future release.
+
+Found a feature missing here, or one that should move from `❌ Rejected` to
+`⏳ Not supported yet`? [Open an issue][open-an-issue].
 
 <!----------------------------------- Links ----------------------------------->
 
-[Open an issue]: https://github.com/kotools/facet/issues
-[Roadmap]: ../ROADMAP.md
+[open-an-issue]: https://github.com/kotools/facet/issues
+[roadmap]: ../ROADMAP.md

@@ -5,19 +5,106 @@
 > One model, many facets.
 
 Kotools Facet is a Kotlin SDK that lets you define your domain model once and
-project it across every layer of your application. This SDK removes the burden
-to maintain mappers and parallel classes.
+project it across every layer of your application.
 
-Read the [specifications of Kotools Facet v1.0][specifications-v1.0] for more
-details.
+## 😩 Problem
+
+In a typical Kotlin project, a single concept needs a parallel data structure to
+communicate with external systems. For example, representing a user accessible
+via HTTP that needs persistence would look like this:
+
+```kotlin
+data class UserDto(val email: String) {
+    fun toUser(): User = User(email)
+}
+
+data class User(val email: String) {
+    fun toUserDto(): UserDto = UserDto(email)
+    fun toUserEntity(): UserEntity = UserEntity(email)
+}
+
+data class UserEntity(val email: String) {
+    fun toUser(): User = User(email)
+}
+```
+
+This pattern leads to:
+
+- **Boilerplate code**: Redundant data classes and mappers.
+- **Maintenance burden**: A single property change ripples through every layer.
+
+## ✨ Solution
+
+With Kotools Facet, the domain model is the only model. Declare each facet in
+it, and Kotools Facet takes care of the rest at compile-time.
+
+```kotlin
+// Client code:
+
+@Faceted
+data class User(val email: String) {
+    object Dto : BidirectionalFacet<User>
+    object Entity : BidirectionalFacet<User>
+}
+
+// Generated code:
+
+fun User.toUserDto(): UserDto = UserDto(email)
+fun User.toUserEntity(): UserEntity = UserEntity(email)
+
+data class UserDto(val email: String) {
+    fun toUser(): User = User(email)
+}
+
+data class UserEntity(val email: String) {
+    fun toUser(): User = User(email)
+}
+```
+
+This solution provides several benefits:
+
+- **Single source of truth**: `User` is declared once. No parallel data classes
+  and mappers to maintain.
+- **Easy maintenance**: Changing one property in `User` propagates across
+  facets.
+
+> [!NOTE]
+> Kotools Facet is not just another mapper generator.
+>
+> Classic mapper generators answer _"How do I convert A to B?"_. They require
+> `UserDto` and `UserEntity` to exist.
+>
+> Kotools Facet answers _"Why do I need B at all?"_. It requires only the domain
+> model (`User`).
+
+## 📦 Modules
+
+Kotools Facet ships following modules:
+
+- `facet-core-dsl` that provides `@Faceted` and DSL for declaring facets.
+- `facet-core-ksp` that generates projections at compile-time.
+
+## 🛠️ Setup
+
+When released, setup will require a KSP plugin and the modules for your stack:
+
+```kotlin
+// In build.gradle.kts file:
+
+plugins {
+    id("com.google.devtools.ksp") version "<ksp-version>"
+}
+
+dependencies {
+    ksp("org.kotools:facet-core-ksp:<facet-version>")
+    implementation("org.kotools:facet-core-dsl:<facet-version>")
+}
+```
 
 ## 📚 Additional Documentation
 
-- [Roadmap]: What's planned next.
-- [Changelog]: Release history.
-- [Versioning strategy]: Our backward-compatibility policy.
-- [Declarations lifecycle]: Stability stages and evolution principles.
 - [Kotlin features support]: Supported and unsupported Kotlin features.
+- [Roadmap]: What's planned next.
 - [Terminology]: Vocabulary used across this project's documentation.
 
 ## 📬 Get Early Access
@@ -34,11 +121,7 @@ licensing, contact us at [contact@kotools.org].
 <!----------------------------------- LINKS ----------------------------------->
 
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
-[changelog]: CHANGELOG.md
 [contact@kotools.org]: mailto:contact@kotools.org
-[declarations lifecycle]: documentation/declarations-lifecycle.md
 [kotlin features support]: documentation/kotlin-features-support.md
 [roadmap]: ROADMAP.md
-[specifications-v1.0]: documentation/specifications/v1.0.md
 [terminology]: documentation/terminology.md
-[versioning strategy]: documentation/versioning-strategy.md

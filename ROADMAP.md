@@ -4,20 +4,23 @@ This roadmap outlines what's planned for Kotools Facet. It reflects current
 thinking and priorities, not a committed timeline. Plans may shift as the SDK
 evolves.
 
-## 🔖 1.0
+## 🔖 0.1
 
 - Kotlin/JVM platform.
 - DSL for facet declarations (`facet-core-dsl` module):
     - `@Faceted` annotation that enables compile-time projection processing.
-    - `BidirectionalFacet` interface declaring two-way projections.
-- KSP processor generating projection code at compile-time (`facet-core-ksp`
+    - `BidirectionalFacet` interface that declares a two-way projection, with
+      _facet-to-domain_ and _domain-to-facet_ mappers.
+    - `InputOnlyFacet` interface that declares an input projection, with
+      _facet-to-domain_ mapper only.
+    - `OutputOnlyFacet` interface that declares an output projection, with
+      _domain-to-facet_ mapper only.
+- KSP processor generating projections at compile-time (`facet-core-ksp`
   module).
 
 ## ⏳ Later plans
 
 - Kotlin Multiplatform (Common + JS + Native).
-- `InputOnlyFacet` for input projections (_facet-to-domain_ mapper only) +
-  `OutputOnlyFacet` for output projections (_domain-to-facet_ mapper only).
 - `rename` function that renames a domain property without changing its type +
   `@FacetPropertySource` annotation that associates a facet property declaration
   with a property declared by the faceted class.
