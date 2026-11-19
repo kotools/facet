@@ -8,35 +8,35 @@ evolves.
 
 - Kotlin/JVM platform.
 - DSL for facet declarations (`facet-core-dsl` module):
-    - `@Faceted` annotation that enables compile-time projection processing.
-    - `BidirectionalFacet` interface that declares a two-way projection, with
-      _facet-to-domain_ and _domain-to-facet_ mappers.
-    - `InputOnlyFacet` interface that declares an input projection, with
-      _facet-to-domain_ mapper only.
-    - `OutputOnlyFacet` interface that declares an output projection, with
-      _domain-to-facet_ mapper only.
+    - `@Faceted` annotation that enables compile-time facet processing.
+    - `BidirectionalFacet` interface that declares a bidirectional facet, with
+      _faceting_ and _projecting_ mappers.
+    - `IncomingFacet` interface that declares a facet with a _faceting_ mapper
+      only.
+    - `OutgoingFacet` interface that declares a facet with a _projecting_
+      mapper only.
 - KSP processor generating projections at compile-time (`facet-core-ksp`
   module).
 
 ## ⏳ Later plans
 
-- Kotlin Multiplatform (Common + JS + Native).
-- `rename` function that renames a domain property without changing its type +
-  `@FacetPropertySource` annotation that associates a facet property declaration
-  with a property declared by the faceted class.
-- `map` function that transforms a domain property's type.
-- `compute` function that declares a facet property computed from the faceted
-  class.
-- `hide` function that excludes a domain property from a facet.
-- `validate(property, predicate)` function to check the validity of a `property`
-  against a `predicate`, and to generate a pair of mappers that throw an
-  exception or return `null` in case of invalid `property`.
-- `mutable(property)` DSL function to control the mutability independent of the
-  source.
+- `rename` property operation that renames a faceted property without changing
+  its type + `@FacetPropertySource` annotation that associates the projected
+  property with the faceted one.
+- `map` property operation that transforms a faceted property's type.
+- `compute` property operation that declares a projected property computed from
+  the faceted class.
+- `hide` property operation that excludes a faceted property from a projection.
+- `validate(property, predicate)` property operation that checks the validity of
+  a `property` against a `predicate`. The processor generates a pair of mappers
+  that throw an exception or return `null` in case of invalid `property`.
+- `mutable(property)` property operation that makes a projected property
+  mutable.
 - Integration with Kotlin Serialization (`facet-serialization` DSL and KSP
   modules):
     - `@Serializable` facet
     - `renameSerial` property operation
+- Kotlin Multiplatform (Common + JS + Native).
 - Integration with Ktor (`facet-ktor` DSL and KSP modules).
 - Integration with Exposed (`facet-exposed` DSL and KSP modules).
 - Integration with Gradle (`org.kotools.facet` plugin): adds required

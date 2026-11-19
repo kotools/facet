@@ -4,7 +4,7 @@
 
 > One model, many facets.
 
-Kotools Facet is a Kotlin SDK that lets you define your domain model once and
+Kotools Facet is a Kotlin SDK that lets you define a faceted class once and
 project it across every layer of your application.
 
 ## 😩 Problem
@@ -35,7 +35,7 @@ This pattern leads to:
 
 ## ✨ Solution
 
-With Kotools Facet, the domain model is the only model. Declare each facet in
+With Kotools Facet, the faceted class is the only model. Declare each facet in
 it, and this SDK takes care of the rest at compile-time.
 
 ```kotlin
@@ -74,8 +74,8 @@ This solution provides several benefits:
 > Classic mapper generators answer _"How do I convert A to B?"_. They require
 > `UserDto` and `UserEntity` to exist.
 >
-> Kotools Facet answers _"Why do I need B at all?"_. It requires only the domain
-> model (`User`).
+> Kotools Facet answers _"Why do I need B at all?"_. It requires only the
+> faceted class (`User`).
 
 ## 📦 Modules
 
@@ -103,9 +103,9 @@ dependencies {
 
 ## 📚 Additional Documentation
 
+- [Glossary]: Vocabulary used across this project's documentation.
 - [Kotlin features support]: Supported and unsupported Kotlin features.
 - [Roadmap]: What's planned next.
-- [Terminology]: Vocabulary used across this project's documentation.
 
 ## 📬 Get Early Access
 
@@ -122,6 +122,6 @@ licensing, contact us at [contact@kotools.org].
 
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
 [contact@kotools.org]: mailto:contact@kotools.org
+[glossary]: documentation/glossary.md
 [kotlin features support]: documentation/kotlin-features-support.md
 [roadmap]: documentation/roadmap.md
-[terminology]: documentation/terminology.md

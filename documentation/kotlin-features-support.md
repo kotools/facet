@@ -4,11 +4,14 @@ This page tracks which Kotlin features the KSP processor of Kotools Facet
 supports for a faceted class.
 
 `⏳ Not supported yet` means that the feature fits the idea of Kotools Facet, a
-domain type with projections, but the processor doesn't handle it yet.
+faceted class with projections, but the processor doesn't handle it yet.
 
 `❌ Rejected` means that the feature falls outside that idea. There's nothing
-meaningful to project, or generated mappers couldn't reconstruct the domain
-instance.
+meaningful to project, or generated mappers couldn't reconstruct the faceted
+class instance.
+
+<!-- TODO: Align content below with glossary. -->
+<!-- Idea: group features by related terms (e.g., Faceted class). -->
 
 ## 🏛️ Class declarations
 
