@@ -61,10 +61,10 @@ class instance.
 | Imported type                 | `val id: java.lang.UUID`             | ✅ Supported since v1.0 |
 | Generic type                  | `val tags: List<String>`             | ✅ Supported since v1.0 |
 | Nested generic type           | `val data: Map<String, List<Int>>`   | ✅ Supported since v1.0 |
-| Star projection               | `val items: List<*>`                 | ✅ Supported since v1.0 |
-| Declaration-site variance     | `val producer: Producer<out String>` | ✅ Supported since v1.0 |
 | Nullable type                 | `val email: String?`                 | ✅ Supported since v1.0 |
 | Nullable type argument        | `val tags: List<String?>`            | ✅ Supported since v1.0 |
+| Star projection               | `val items: List<*>`                 | ⏳ Not supported yet    |
+| Declaration-site variance     | `val producer: Producer<out String>` | ⏳ Not supported yet    |
 | Type alias                    | `typealias Id = Long`                | ⏳ Not supported yet    |
 | Function type                 | `val onClick: () -> Unit`            | ⏳ Not supported yet    |
 | Nullable function type        | `val onClick: (() -> Unit)?`         | ⏳ Not supported yet    |
