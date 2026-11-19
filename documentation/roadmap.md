@@ -34,8 +34,11 @@ evolves.
   mutable.
 - Integration with Kotlin Serialization (`facet-serialization` DSL and KSP
   modules):
-    - `@Serializable` facet
-    - `renameSerial` property operation
+    - `BidirectionalSerializableFacet`, `IncomingSerializableFacet` and
+      `OutgoingSerializableFacet` interfaces that declare a serializable facet.
+      Their projection is annotated with `@Serializable`.
+    - `renameSerial` property operation to set the serial name of a projected
+      property. The processor marks it with `@SerialName`.
 - Kotlin Multiplatform (Common + JS + Native).
 - Integration with Ktor (`facet-ktor` DSL and KSP modules).
 - Integration with Exposed (`facet-exposed` DSL and KSP modules).
