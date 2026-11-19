@@ -11,7 +11,9 @@ meaningful to project, or generated mappers couldn't reconstruct the faceted
 class instance.
 
 <!-- TODO: Align content below with glossary. -->
-<!-- Idea: group features by related terms (e.g., Faceted class). -->
+<!-- Idea: Group features by related terms or by status. -->
+
+<!-- TODO: Add a reason to each not supported yet or rejected feature. -->
 
 ## 🏛️ Class declarations
 
