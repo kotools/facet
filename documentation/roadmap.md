@@ -15,6 +15,11 @@ evolves.
       only.
     - `OutgoingFacet` interface that declares a facet with a _projecting_
       mapper only.
+    - `map` property operation that transforms a faceted property's type.
+    - `hide` property operation that excludes a faceted property from a
+      projection.
+    - `compute` property operation that declares a projected property computed
+      from the faceted class.
 - KSP processor generating projections at compile-time (`facet-core-ksp`
   module).
 
@@ -23,10 +28,6 @@ evolves.
 - `rename` property operation that renames a faceted property without changing
   its type + `@FacetPropertySource` annotation that associates the projected
   property with the faceted one.
-- `map` property operation that transforms a faceted property's type.
-- `compute` property operation that declares a projected property computed from
-  the faceted class.
-- `hide` property operation that excludes a faceted property from a projection.
 - `validate(property, predicate)` property operation that checks the validity of
   a `property` against a `predicate`. The processor generates a pair of mappers
   that throw an exception or return `null` in case of invalid `property`.
