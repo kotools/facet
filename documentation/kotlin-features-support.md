@@ -17,75 +17,75 @@ class instance.
 
 ## 🏛️ Class declarations
 
-| Kotlin feature                    | Code example                                        | Status                 |
-|-----------------------------------|-----------------------------------------------------|------------------------|
-| Top-level public data class       | `data class User(val id: Long)`                     | ✅ Supported since 0.1 |
-| Internal data class               | `internal data class User(val id: Long)`            | ⏳ Not supported yet   |
-| Internal primary constructor      | `class User internal constructor(val id: Long)`     | ⏳ Not supported yet   |
-| Regular class                     | `class User(val id: Long)`                          | ⏳ Not supported yet   |
-| Abstract class                    | `abstract class User(val id: Long)`                 | ❌ Rejected            |
-| Object declaration                | `object User`                                       | ❌ Rejected            |
-| Data object declaration           | `data object User`                                  | ❌ Rejected            |
-| Annotation class                  | `annotation class User`                             | ❌ Rejected            |
-| Sealed class                      | `sealed class User`                                 | ⏳ Not supported yet   |
-| Interface                         | `interface User`                                    | ❌ Rejected            |
-| Sealed interface                  | `sealed interface User`                             | ⏳ Not supported yet   |
-| Enum class                        | `enum class User { A, B }`                          | ⏳ Not supported yet   |
-| Value class                       | `@JvmInline value class Id(val value: Long)`        | ⏳ Not supported yet   |
-| Generic data class                | `data class Box<T>(val value: T)`                   | ⏳ Not supported yet   |
-| Nested class                      | `class Outer { data class User(val id: Long) }`     | ⏳ Not supported yet   |
-| Local class                       | `fun f() { data class User(val id: Long) }`         | ❌ Rejected            |
-| Private or protected class        | `private data class User(val id: Long)`             | ❌ Rejected            |
-| Class without primary constructor | `class User { constructor(id: Long) }`              | ❌ Rejected            |
-| Private constructor               | `data class User private constructor(val id: Long)` | ❌ Rejected            |
+| Kotlin feature                    | Code example                                        | Status                  |
+|-----------------------------------|-----------------------------------------------------|-------------------------|
+| Top-level public data class       | `data class User(val id: Long)`                     | ✅ Supported since v1.0 |
+| Internal data class               | `internal data class User(val id: Long)`            | ⏳ Not supported yet    |
+| Internal primary constructor      | `class User internal constructor(val id: Long)`     | ⏳ Not supported yet    |
+| Regular class                     | `class User(val id: Long)`                          | ⏳ Not supported yet    |
+| Abstract class                    | `abstract class User(val id: Long)`                 | ❌ Rejected             |
+| Object declaration                | `object User`                                       | ❌ Rejected             |
+| Data object declaration           | `data object User`                                  | ❌ Rejected             |
+| Annotation class                  | `annotation class User`                             | ❌ Rejected             |
+| Sealed class                      | `sealed class User`                                 | ⏳ Not supported yet    |
+| Interface                         | `interface User`                                    | ❌ Rejected             |
+| Sealed interface                  | `sealed interface User`                             | ⏳ Not supported yet    |
+| Enum class                        | `enum class User { A, B }`                          | ⏳ Not supported yet    |
+| Value class                       | `@JvmInline value class Id(val value: Long)`        | ⏳ Not supported yet    |
+| Generic data class                | `data class Box<T>(val value: T)`                   | ⏳ Not supported yet    |
+| Nested class                      | `class Outer { data class User(val id: Long) }`     | ⏳ Not supported yet    |
+| Local class                       | `fun f() { data class User(val id: Long) }`         | ❌ Rejected             |
+| Private or protected class        | `private data class User(val id: Long)`             | ❌ Rejected             |
+| Class without primary constructor | `class User { constructor(id: Long) }`              | ❌ Rejected             |
+| Private constructor               | `data class User private constructor(val id: Long)` | ❌ Rejected             |
 
 ## 🧱 Constructor properties
 
-| Kotlin feature                     | Code example                                   | Status                 |
-|------------------------------------|------------------------------------------------|------------------------|
-| Public property                    | `data class User(public val id: Long)`         | ✅ Supported since 0.1 |
-| Internal property                  | `data class User(internal val id: Long)`       | ⏳ Not supported yet   |
-| Private or protected property      | `data class User(private val id: Long)`        | ❌ Rejected            |
-| Read-only property (`val`)         | `data class User(val id: Long)`                | ✅ Supported since 0.1 |
-| Mutable property (`var`)           | `data class User(var id: Long)`                | ⏳ Not supported yet   |
-| Non-property constructor parameter | `data class User(id: Long)`                    | ❌ Rejected            |
-| Default parameter value            | `data class User(val page: Int = 1)`           | ⏳ Not supported yet   |
-| Vararg property                    | `data class User(vararg val tags: String)`     | ⏳ Not supported yet   |
-| Annotation on property             | `data class User(@Deprecated val id: Long)`    | ⏳ Not supported yet   |
-| KDoc on property                   | `data class User(/** The id. */ val id: Long)` | ⏳ Not supported yet   |
+| Kotlin feature                     | Code example                                   | Status                  |
+|------------------------------------|------------------------------------------------|-------------------------|
+| Public property                    | `data class User(public val id: Long)`         | ✅ Supported since v1.0 |
+| Internal property                  | `data class User(internal val id: Long)`       | ⏳ Not supported yet    |
+| Private or protected property      | `data class User(private val id: Long)`        | ❌ Rejected             |
+| Read-only property (`val`)         | `data class User(val id: Long)`                | ✅ Supported since v1.0 |
+| Mutable property (`var`)           | `data class User(var id: Long)`                | ⏳ Not supported yet    |
+| Non-property constructor parameter | `data class User(id: Long)`                    | ❌ Rejected             |
+| Default parameter value            | `data class User(val page: Int = 1)`           | ⏳ Not supported yet    |
+| Vararg property                    | `data class User(vararg val tags: String)`     | ⏳ Not supported yet    |
+| Annotation on property             | `data class User(@Deprecated val id: Long)`    | ⏳ Not supported yet    |
+| KDoc on property                   | `data class User(/** The id. */ val id: Long)` | ⏳ Not supported yet    |
 
 ## 🔤 Property types
 
-| Kotlin feature                | Code example                         | Status                 |
-|-------------------------------|--------------------------------------|------------------------|
-| Imported type                 | `val id: java.lang.UUID`             | ✅ Supported since 0.1 |
-| Generic type                  | `val tags: List<String>`             | ✅ Supported since 0.1 |
-| Nested generic type           | `val data: Map<String, List<Int>>`   | ✅ Supported since 0.1 |
-| Star projection               | `val items: List<*>`                 | ✅ Supported since 0.1 |
-| Declaration-site variance     | `val producer: Producer<out String>` | ✅ Supported since 0.1 |
-| Nullable type                 | `val email: String?`                 | ✅ Supported since 0.1 |
-| Nullable type argument        | `val tags: List<String?>`            | ✅ Supported since 0.1 |
-| Type alias                    | `typealias Id = Long`                | ⏳ Not supported yet   |
-| Function type                 | `val onClick: () -> Unit`            | ⏳ Not supported yet   |
-| Nullable function type        | `val onClick: (() -> Unit)?`         | ⏳ Not supported yet   |
-| Multi-parameter function type | `val onMove: (Int, Int) -> Unit`     | ⏳ Not supported yet   |
-| Suspend function type         | `val onSync: suspend () -> Unit`     | ⏳ Not supported yet   |
-| Function type with receiver   | `val onClick: String.() -> Unit`     | ⏳ Not supported yet   |
-| Type parameter                | `val value: T`                       | ⏳ Not supported yet   |
-| Definitely non-null type      | `val value: T & Any`                 | ⏳ Not supported yet   |
+| Kotlin feature                | Code example                         | Status                  |
+|-------------------------------|--------------------------------------|-------------------------|
+| Imported type                 | `val id: java.lang.UUID`             | ✅ Supported since v1.0 |
+| Generic type                  | `val tags: List<String>`             | ✅ Supported since v1.0 |
+| Nested generic type           | `val data: Map<String, List<Int>>`   | ✅ Supported since v1.0 |
+| Star projection               | `val items: List<*>`                 | ✅ Supported since v1.0 |
+| Declaration-site variance     | `val producer: Producer<out String>` | ✅ Supported since v1.0 |
+| Nullable type                 | `val email: String?`                 | ✅ Supported since v1.0 |
+| Nullable type argument        | `val tags: List<String?>`            | ✅ Supported since v1.0 |
+| Type alias                    | `typealias Id = Long`                | ⏳ Not supported yet    |
+| Function type                 | `val onClick: () -> Unit`            | ⏳ Not supported yet    |
+| Nullable function type        | `val onClick: (() -> Unit)?`         | ⏳ Not supported yet    |
+| Multi-parameter function type | `val onMove: (Int, Int) -> Unit`     | ⏳ Not supported yet    |
+| Suspend function type         | `val onSync: suspend () -> Unit`     | ⏳ Not supported yet    |
+| Function type with receiver   | `val onClick: String.() -> Unit`     | ⏳ Not supported yet    |
+| Type parameter                | `val value: T`                       | ⏳ Not supported yet    |
+| Definitely non-null type      | `val value: T & Any`                 | ⏳ Not supported yet    |
 
 ## 🧰 Class body members
 
-| Kotlin feature                               | Code example                                        | Status                 |
-|----------------------------------------------|-----------------------------------------------------|------------------------|
-| Body property with custom getter             | `val fullName get() = "$first $last"`               | ⏳ Not supported yet   |
-| Delegated property                           | `val lazy by lazy { compute() }`                    | ❌ Rejected            |
-| Secondary constructor                        | `constructor(name: String) : this(0, name)`         | ❌ Rejected            |
-| Member function                              | `fun greet(): String = "Hi, $name"`                 | ❌ Rejected            |
-| Nested object implementing `*Facet`          | `object Entity : BidirectionalFacet<User>`          | ✅ Supported since 0.1 |
-| Internal nested object implementing `*Facet` | `internal object Entity : BidirectionalFacet<User>` | ⏳ Not supported yet   |
-| Private nested object implementing `*Facet`  | `private object Entity : BidirectionalFacet<User>`  | ❌ Rejected            |
-| Nested data object implementing `*Facet`     | `data object Entity : BidirectionalFacet<User>`     | ⏳ Not supported yet   |
+| Kotlin feature                               | Code example                                        | Status                  |
+|----------------------------------------------|-----------------------------------------------------|-------------------------|
+| Body property with custom getter             | `val fullName get() = "$first $last"`               | ⏳ Not supported yet    |
+| Delegated property                           | `val lazy by lazy { compute() }`                    | ❌ Rejected             |
+| Secondary constructor                        | `constructor(name: String) : this(0, name)`         | ❌ Rejected             |
+| Member function                              | `fun greet(): String = "Hi, $name"`                 | ❌ Rejected             |
+| Nested object implementing `*Facet`          | `object Entity : BidirectionalFacet<User>`          | ✅ Supported since v1.0 |
+| Internal nested object implementing `*Facet` | `internal object Entity : BidirectionalFacet<User>` | ⏳ Not supported yet    |
+| Private nested object implementing `*Facet`  | `private object Entity : BidirectionalFacet<User>`  | ❌ Rejected             |
+| Nested data object implementing `*Facet`     | `data object Entity : BidirectionalFacet<User>`     | ⏳ Not supported yet    |
 
 ## 🗺️ What's next
 

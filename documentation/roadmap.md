@@ -4,7 +4,7 @@ This roadmap outlines what's planned for Kotools Facet. It reflects current
 thinking and priorities, not a committed timeline. Plans may shift as the SDK
 evolves.
 
-## 🔖 0.1
+## 🔖 v1.0
 
 - Kotlin/JVM platform.
 - DSL for facet declarations (`facet-core-dsl` module):
