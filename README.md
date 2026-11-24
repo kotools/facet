@@ -33,7 +33,7 @@ This pattern leads to:
 - **Boilerplate code**: Redundant data classes and mappers.
 - **Maintenance burden**: A single property change ripples through every layer.
 
-## ✨ Solution
+## 💡 Solution
 
 With Kotools Facet, the faceted class is the only model. Declare each facet in
 it, and this SDK takes care of the rest at compile-time.
@@ -57,6 +57,16 @@ This solution provides several benefits:
 > Kotools Facet is not just another mapper generator. Classic mapper generators
 > answer _"How do I convert A to B?"_. Kotools Facet answers _"Why do I need B
 > at all?"_.
+
+## ✨ Features
+
+- Mark faceted classes with `@Faceted` annotation. Supports public top-level
+  data classes, with a public primary constructor containing read-only
+  properties. These constructor properties can use Kotlin built-in types,
+  imported types, nullable types, and generic types.
+- Declare facets using `Facet` interface. Supports public nested objects.
+- Generate projections at compile-time using KSP.
+- Supports Kotlin/JVM platform.
 
 ## 📦 Modules
 
