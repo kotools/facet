@@ -9,7 +9,7 @@ evolves.
 - Kotlin/JVM platform.
 - DSL for facet declarations (`facet-core-dsl` module):
     - `@Faceted` annotation that enables compile-time facet processing.
-    - `OutgoingFacet` interface that declares a facet with a _projecting_ mapper
+    - `OutgoingFacet` type that declares a facet with a _projecting_ mapper
       only. It supports these property operations:
         - `map` that transforms a faceted property's type.
         - `hide` that excludes a faceted property from a projection.
@@ -20,14 +20,14 @@ evolves.
 
 ## 🔖 v1.1
 
-`IncomingFacet` interface that declares a facet with a _faceting_ mapper only.
-It supports `map` and `hide` property operations.
+`IncomingFacet` type that declares a facet with a _faceting_ mapper only. It
+supports `map` and `hide` property operations.
 
 ## 🔖 v1.2
 
-`BidirectionalFacet` interface that declares a bidirectional facet, with
-_faceting_ and _projecting_ mappers. It supports `map`, `hide` and `compute`
-property operations.
+`BidirectionalFacet` type that declares a bidirectional facet, with _faceting_
+and _projecting_ mappers. It supports `map`, `hide` and `compute` property
+operations.
 
 ## ⏳ Later plans
 
@@ -43,9 +43,9 @@ property operations.
   modules). 2 options:
     1. Propagating `@Serializable` and `@SerialName` annotations from facets to
        projections.
-    2. Introducing `SerializableFacet` interface to declare a serializable
-       facet, and `renameSerial` property operation to set the serial name of a
-       projected property.
+    2. Introducing `SerializableFacet` type to declare a serializable facet, and
+       `renameSerial` property operation to set the serial name of a projected
+       property.
 - Kotlin Multiplatform (Common + JS + Native).
 - Integration with Ktor (`facet-ktor` DSL and KSP modules).
 - Integration with Exposed (`facet-exposed` DSL and KSP modules).

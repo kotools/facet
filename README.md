@@ -11,21 +11,18 @@ project it across every layer of your application.
 
 In a typical Kotlin project, a single concept needs a parallel data structure to
 communicate with external systems. For example, representing a user accessible
-via HTTP that needs persistence would look like this:
+via HTTP would look like this:
 
 ```kotlin
-data class UserDto(val email: String) {
-    fun toUser(): User = User(email)
+data class User(val id: UUID, val email: String, val password: String) {
+    fun toUserResponse(): UserResponse = UserResponse(
+        id = this.id.toString(),
+        email = this.email,
+        name = this.email.substringBefore('@')
+    )
 }
 
-data class User(val email: String) {
-    fun toUserDto(): UserDto = UserDto(email)
-    fun toUserEntity(): UserEntity = UserEntity(email)
-}
-
-data class UserEntity(val email: String) {
-    fun toUser(): User = User(email)
-}
+data class UserResponse(val id: String, val email: String, val name: String)
 ```
 
 This pattern leads to:
@@ -39,25 +36,13 @@ With Kotools Facet, the faceted class is the only model. Declare each facet in
 it, and this SDK takes care of the rest at compile-time.
 
 ```kotlin
-// Client code:
-
 @Faceted
-data class User(val email: String) {
-    object Dto : BidirectionalFacet<User>
-    object Entity : BidirectionalFacet<User>
-}
-
-// Generated code:
-
-fun User.toUserDto(): UserDto = UserDto(email)
-fun User.toUserEntity(): UserEntity = UserEntity(email)
-
-data class UserDto(val email: String) {
-    fun toUser(): User = User(email)
-}
-
-data class UserEntity(val email: String) {
-    fun toUser(): User = User(email)
+data class User(val id: UUID, val email: String, val password: String) {
+    object Response : OutgoingFacet<User>() {
+        val id = map(User::id) { it.toString() }
+        val password = hide()
+        val name = compute { it.email.substringBefore('@') }
+    }
 }
 ```
 

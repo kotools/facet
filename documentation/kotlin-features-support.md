@@ -76,16 +76,16 @@ class instance.
 
 ## 🧰 Class body members
 
-| Kotlin feature                               | Code example                                        | Status                  |
-|----------------------------------------------|-----------------------------------------------------|-------------------------|
-| Body property with custom getter             | `val fullName get() = "$first $last"`               | ⏳ Not supported yet    |
-| Delegated property                           | `val lazy by lazy { compute() }`                    | ❌ Rejected             |
-| Secondary constructor                        | `constructor(name: String) : this(0, name)`         | ❌ Rejected             |
-| Member function                              | `fun greet(): String = "Hi, $name"`                 | ❌ Rejected             |
-| Nested object implementing `*Facet`          | `object Entity : BidirectionalFacet<User>`          | ✅ Supported since v1.0 |
-| Internal nested object implementing `*Facet` | `internal object Entity : BidirectionalFacet<User>` | ⏳ Not supported yet    |
-| Private nested object implementing `*Facet`  | `private object Entity : BidirectionalFacet<User>`  | ❌ Rejected             |
-| Nested data object implementing `*Facet`     | `data object Entity : BidirectionalFacet<User>`     | ⏳ Not supported yet    |
+| Kotlin feature                            | Code example                                     | Status                  |
+|-------------------------------------------|--------------------------------------------------|-------------------------|
+| Body property with custom getter          | `val fullName get() = "$first $last"`            | ⏳ Not supported yet    |
+| Delegated property                        | `val lazy by lazy { compute() }`                 | ❌ Rejected             |
+| Secondary constructor                     | `constructor(name: String) : this(0, name)`      | ❌ Rejected             |
+| Member function                           | `fun greet(): String = "Hi, $name"`              | ❌ Rejected             |
+| Nested object extending `*Facet`          | `object Entity : OutgoingFacet<User>()`          | ✅ Supported since v1.0 |
+| Internal nested object extending `*Facet` | `internal object Entity : OutgoingFacet<User>()` | ⏳ Not supported yet    |
+| Private nested object extending `*Facet`  | `private object Entity : OutgoingFacet<User>()`  | ❌ Rejected             |
+| Nested data object extending `*Facet`     | `data object Entity : OutgoingFacet<User>()`     | ⏳ Not supported yet    |
 
 ## 🗺️ What's next
 
