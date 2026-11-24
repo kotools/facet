@@ -89,8 +89,6 @@ dependencies {
 ## 📚 Additional Documentation
 
 - [Glossary]: Vocabulary used across this project's documentation.
-- [Kotlin features support]: Supported and unsupported Kotlin features.
-- [Roadmap]: What's planned next.
 
 ## 📬 Get Early Access
 
@@ -108,5 +106,3 @@ licensing, contact us at [contact@kotools.org].
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
 [contact@kotools.org]: mailto:contact@kotools.org
 [glossary]: documentation/glossary.md
-[kotlin features support]: documentation/kotlin-features-support.md
-[roadmap]: documentation/roadmap.md
