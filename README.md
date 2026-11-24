@@ -54,13 +54,9 @@ This solution provides several benefits:
   facets.
 
 > [!NOTE]
-> Kotools Facet is not just another mapper generator.
->
-> Classic mapper generators answer _"How do I convert A to B?"_. They require
-> `UserDto` and `UserEntity` to exist.
->
-> Kotools Facet answers _"Why do I need B at all?"_. It requires only the
-> faceted class (`User`).
+> Kotools Facet is not just another mapper generator. Classic mapper generators
+> answer _"How do I convert A to B?"_. Kotools Facet answers _"Why do I need B
+> at all?"_.
 
 ## 📦 Modules
 
