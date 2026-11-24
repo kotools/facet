@@ -14,7 +14,3 @@ can rely on these terms instead of redefining them.
 - **Projection**: a class generated from a facet.
 - **Faceted property**: a property declared in a faceted class.
 - **Projected property**: a property declared in a projection.
-- **Projecting mapper**: converts a faceted class instance into a projection.
-- **Faceting mapper**: converts a projection into a faceted class instance.
-- **Property operation**: a transformation applied to a property while
-  projecting or faceting.
