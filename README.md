@@ -11,18 +11,21 @@ project it across every layer of your application.
 
 In a typical Kotlin project, a single concept needs a parallel data structure to
 communicate with external systems. For example, representing a user accessible
-via HTTP would look like this:
+via HTTP that needs persistence would look like this:
 
 ```kotlin
-data class User(val id: UUID, val email: String, val password: String) {
-    fun toUserResponse(): UserResponse = UserResponse(
-        id = this.id.toString(),
-        email = this.email,
-        name = this.email.substringBefore('@')
-    )
+data class UserDto(val email: String) {
+    fun toUser(): User = User(email)
 }
 
-data class UserResponse(val id: String, val email: String, val name: String)
+data class User(val email: String) {
+    fun toUserDto(): UserDto = UserDto(email)
+    fun toUserEntity(): UserEntity = UserEntity(email)
+}
+
+data class UserEntity(val email: String) {
+    fun toUser(): User = User(email)
+}
 ```
 
 This pattern leads to:
@@ -37,12 +40,9 @@ it, and this SDK takes care of the rest at compile-time.
 
 ```kotlin
 @Faceted
-data class User(val id: UUID, val email: String, val password: String) {
-    object Response : OutgoingFacet<User>() {
-        val id = map { it.id.toString() }
-        val password = hide()
-        val name = compute { it.email.substringBefore('@') }
-    }
+data class User(val email: String) {
+    object Dto : Facet<User>
+    object Entity : Facet<User>
 }
 ```
 
@@ -66,8 +66,9 @@ This solution provides several benefits:
 
 Kotools Facet ships following modules:
 
-- `facet-core-dsl` that provides `@Faceted` and DSL for declaring facets.
-- `facet-core-ksp` that generates projections at compile-time.
+- `facet-dsl` that provides `@Faceted` and DSL for declaring facets.
+- `facet-ksp` that generates projections at compile-time using Kotlin Symbol
+  Processing (KSP).
 
 ## 🛠️ Setup
 
@@ -81,8 +82,8 @@ plugins {
 }
 
 dependencies {
-    ksp("org.kotools:facet-core-ksp:<facet-version>")
-    implementation("org.kotools:facet-core-dsl:<facet-version>")
+    ksp("org.kotools:facet-ksp:<kotools-facet-version>")
+    implementation("org.kotools:facet-dsl:<kotools-facet-version>")
 }
 ```
 
