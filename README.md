@@ -39,7 +39,7 @@ it, and this SDK takes care of the rest at compile-time.
 @Faceted
 data class User(val id: UUID, val email: String, val password: String) {
     object Response : OutgoingFacet<User>() {
-        val id = map(User::id) { it.toString() }
+        val id = map { it.id.toString() }
         val password = hide()
         val name = compute { it.email.substringBefore('@') }
     }
