@@ -17,4 +17,4 @@ can rely on these terms instead of redefining them.
 - **Projecting mapper**: converts a faceted class instance into a projection.
 - **Faceting mapper**: converts a projection into a faceted class instance.
 - **Property operation**: a transformation applied to a property while
-  projecting.
+  projecting or faceting.
