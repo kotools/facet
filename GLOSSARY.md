@@ -9,8 +9,8 @@ can rely on these terms instead of redefining them.
 
 ## 🧩 Terms
 
-- **Faceted class**: a class that declares its own projections.
-- **Facet**: a named perspective on a faceted class.
-- **Projection**: a class generated from a facet.
-- **Faceted property**: a property declared in a faceted class.
-- **Projected property**: a property declared in a projection.
+- **Faceted class**: A class that declares its own projections.
+- **Faceted property**: A primary-constructor property of a faceted class.
+- **Facet**: A named perspective on a faceted class.
+- **Projection**: A class generated from a facet.
+- **Projected property**: A primary-constructor property of a projection.
