@@ -41,8 +41,8 @@ it, and this SDK takes care of the rest at compile-time.
 ```kotlin
 @Faceted
 data class User(val email: String) {
-    object Dto : Facet<User>
-    object Entity : Facet<User>
+    object Dto : Facet
+    object Entity : Facet
 }
 ```
 
