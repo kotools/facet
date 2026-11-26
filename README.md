@@ -4,47 +4,90 @@
 
 > One model, many facets.
 
-Kotools Facet is a Kotlin SDK that lets you define a faceted class once and
-project it across every layer of your application.
+Kotools Facet is a Kotlin SDK that removes data class duplication and mapper
+boilerplate. Declare a class once, and the SDK generates projections at
+compile-time.
 
 ## 😩 Problem
 
 In a typical Kotlin project, a single concept needs a parallel data structure to
-communicate with external systems. For example, representing a user accessible
-via HTTP that needs persistence would look like this:
+communicate with external systems (like HTTP or a database).
 
 ```kotlin
-data class UserDto(val email: String) {
-    fun toUser(): User = User(email)
+data class User(
+    val id: Int,
+    val email: String,
+    val name: String,
+    val age: Int
+) {
+    fun toDto(): UserDto = UserDto(id, email, name, age)
 }
 
-data class User(val email: String) {
-    fun toUserDto(): UserDto = UserDto(email)
-    fun toUserEntity(): UserEntity = UserEntity(email)
-}
-
-data class UserEntity(val email: String) {
-    fun toUser(): User = User(email)
-}
+data class UserDto(
+    val id: Int,
+    val email: String,
+    val name: String,
+    val age: Int
+)
 ```
 
 This pattern leads to:
 
 - **Boilerplate code**: Redundant data classes and mappers.
-- **Maintenance burden**: A single property change ripples through every layer.
+- **Maintenance burden**: A single property change must be repeated in every
+  class and every mapper.
 
 ## 💡 Solution
 
-With Kotools Facet, the faceted class is the only model. Declare each facet in
-it, and this SDK takes care of the rest at compile-time.
+With Kotools Facet, the _faceted class_ is the only model and holds its
+perspectives (_facets_).
 
 ```kotlin
 @Faceted
-data class User(val email: String) {
+data class User(
+    val id: Int,
+    val email: String,
+    val name: String,
+    val age: Int
+) {
     object Dto : Facet
-    object Entity : Facet
 }
 ```
+
+At compile-time, each _facet_ yields a _projection_. For the `Dto` _facet_
+above, the SDK generates this class and this function:
+
+```kotlin
+fun User.toDto(): UserDto = UserDto(
+    id = this.id,
+    email = this.email,
+    name = this.name,
+    age = this.age
+)
+
+data class UserDto(
+    val id: Int,
+    val email: String,
+    val name: String,
+    val age: Int
+)
+```
+
+You then use it like any other Kotlin code:
+
+```kotlin
+val user = User(id = 1, email = "user@example.org", name = "User", age = 30)
+println(user) // User(id=1, email=user@example.org, name=User, age=30)
+
+val dto = user.toDto()
+println(dto) // UserDto(id=1, email=user@example.org, name=User, age=30)
+```
+
+> [!NOTE]
+> Generated names and functions are a design proposal. Tell us what you would
+> change in the [Give Feedback](#-give-feedback) section.
+
+See the [glossary] for the vocabulary used here.
 
 This solution provides several benefits:
 
@@ -68,48 +111,23 @@ This solution provides several benefits:
 - Generate projections at compile-time using KSP.
 - Supports Kotlin/JVM platform.
 
-## 📦 Modules
+## 💬 Give Feedback
 
-Kotools Facet ships following modules:
+Kotools Facet is in early development, and v1.0.0 is shaped by what Kotlin
+developers need. Join the [discussion][feedback-discussion].
 
-- `facet-dsl` that provides `@Faceted` and DSL for declaring facets.
-- `facet-ksp` that generates projections at compile-time using Kotlin Symbol
-  Processing (KSP).
-
-## 🛠️ Setup
-
-When released, setup will require a KSP plugin and the modules for your stack:
-
-```kotlin
-// In build.gradle.kts file:
-
-plugins {
-    id("com.google.devtools.ksp") version "<ksp-version>"
-}
-
-dependencies {
-    ksp("org.kotools:facet-ksp:<kotools-facet-version>")
-    implementation("org.kotools:facet-dsl:<kotools-facet-version>")
-}
-```
-
-## 📚 Additional Documentation
-
-- [Glossary]: Vocabulary used across this project's documentation.
-
-## 📬 Get Early Access
-
-Kotools Facet is commercial software. To get notified when it ships and to
-discuss licensing, **join the waiting list** by sending an email to
-[contact@kotools.org] with the subject **"Kotools Facet – Waiting List"**.
+To follow the project and be notified of the first release, watch this
+repository (**Watch** > **Custom** > **Discussions**).
 
 ## 📄 License
 
-The SDK modules are distributed under a commercial license. To enquire about
-licensing, contact us at [contact@kotools.org].
+Free for non-commercial use is planned. Final terms will be published with the
+first release. To enquire about commercial licensing, contact us at
+[contact@kotools.org].
 
 <!----------------------------------- LINKS ----------------------------------->
 
 [badge-status]: https://img.shields.io/badge/Status-Early%20Development-orange.svg
 [contact@kotools.org]: mailto:contact@kotools.org
+[feedback-discussion]: https://github.com/kotools/facet/discussions/6
 [glossary]: GLOSSARY.md
